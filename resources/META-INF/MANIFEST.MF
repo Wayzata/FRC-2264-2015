@@ -1,8 +1,6 @@
-MIDlet-Name: Robot
+MIDlet-Name: Robot_2264
 MIDlet-Version: 1.0.0
 MIDlet-Vendor: FIRST
-MIDlet-1: Robot, , org.usfirst.frc2264.Robot
+MIDlet-1: Robot_2264, , org.usfirst.frc2264.Robot_2264
 MicroEdition-Profile: IMP-1.0
 MicroEdition-Configuration: CLDC-1.1
-
-

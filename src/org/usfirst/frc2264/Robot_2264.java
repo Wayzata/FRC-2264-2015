@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-public class Robot extends IterativeRobot {
+public class Robot_2264 extends IterativeRobot {
 	Command autonomousCommand;
 	
 	public void robotInit() {
@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
 	// Teleoperated mode
 	public void teleopInit() {
 		autonomousCommand.cancel(); // End autonomous mode command.
+		// TODO
 	}
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
