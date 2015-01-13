@@ -1,4 +1,3 @@
-
 package org.usfirst.frc2264.autonomous;
 
 import org.usfirst.frc2264.commands.CommandBase;
@@ -17,6 +16,7 @@ public class AutonomousCommand extends CommandBase {
 	protected void execute() {
 	}
 	protected void end() {
+		System.out.println("Ended autonomous mode.");
 	}
 	
 	protected boolean isFinished() {
