@@ -2,7 +2,6 @@ package org.usfirst.frc2264;
 
 import org.usfirst.frc2264.autonomous.AutonomousCommand;
 import org.usfirst.frc2264.commands.CommandBase;
-import org.usfirst.frc2264.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
