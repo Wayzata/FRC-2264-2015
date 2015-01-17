@@ -19,9 +19,9 @@ public abstract class CommandBase extends Command {
 	public static OI oi; // TODO Find out what this is/does.
 	
 	// Subsystem instantiation.
-	public static LiftSubsystem armSubsystem = new LiftSubsystem();
 	public static ClawSubsystem clawSubsystem = new ClawSubsystem();
 	public static DriveSubsystemCAN driveSubsystem = new DriveSubsystemCAN();
+	public static LiftSubsystem liftSubsystem = new LiftSubsystem();
 	public static VisionSubsystem visionSubsystem = new VisionSubsystem();
 	
 	public static void init() {
@@ -38,10 +38,5 @@ public abstract class CommandBase extends Command {
 
 	public CommandBase(String name) {
 		super(name);
-	}
-
-	protected synchronized void requires(Subsystem ... subsystems) {
-		for(Subsystem subsystem : subsystems)
-			super.requires(subsystem);
 	}
 }
