@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2264.OI;
-import org.usfirst.frc2264.subsystems.ArmSubsystem;
+import org.usfirst.frc2264.subsystems.LiftSubsystem;
 import org.usfirst.frc2264.subsystems.ClawSubsystem;
-import org.usfirst.frc2264.subsystems.DriveSubsystem;
+import org.usfirst.frc2264.subsystems.DriveSubsystemCAN;
 import org.usfirst.frc2264.subsystems.VisionSubsystem;
 
 /**
@@ -19,11 +19,11 @@ public abstract class CommandBase extends Command {
 	public static OI oi; // TODO Find out what this is/does.
 	
 	// Subsystem instantiation.
-	public static ArmSubsystem armSubsystem = new ArmSubsystem();
+	public static LiftSubsystem armSubsystem = new LiftSubsystem();
 	public static ClawSubsystem clawSubsystem = new ClawSubsystem();
-	public static DriveSubsystem driveSubsystem = new DriveSubsystem();
+	public static DriveSubsystemCAN driveSubsystem = new DriveSubsystemCAN();
 	public static VisionSubsystem visionSubsystem = new VisionSubsystem();
-
+	
 	public static void init() {
 		// This MUST be here. If the OI creates Commands (which it very likely
 		// will), constructing it during the construction of CommandBase (from
@@ -33,10 +33,7 @@ public abstract class CommandBase extends Command {
 		oi = new OI(); // TODO Find out what this is/does.
 
 		// Show what command your subsystem is running on the SmartDashboard
-		SmartDashboard.putData(armSubsystem);
-		SmartDashboard.putData(clawSubsystem);
-		SmartDashboard.putData(driveSubsystem);
-		SmartDashboard.putData(visionSubsystem);
+		// SmartDashboard.putData(/* ... */);
 	}
 
 	public CommandBase(String name) {

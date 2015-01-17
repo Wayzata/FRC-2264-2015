@@ -24,8 +24,7 @@ public class Robot_2264 extends IterativeRobot {
 	}
 	// Teleoperated mode
 	public void teleopInit() {
-		this.autonomousCommand.cancel(); // End autonomous mode command.
-		// TODO
+		this.autonomousCommand.cancel();
 	}
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();

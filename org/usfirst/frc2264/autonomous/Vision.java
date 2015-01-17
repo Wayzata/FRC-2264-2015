@@ -16,7 +16,7 @@ public class Vision {
 	import edu.wpi.first.wpilibj.SampleRobot;
 	import edu.wpi.first.wpilibj.Timer;
 	import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+	
 	/**
 	 * Example of finding yellow totes based on retroreflective target.
 	 * This example utilizes an image file, which you need to copy to the roboRIO
@@ -25,7 +25,7 @@ public class Vision {
 	 * on using the USB camera. To use an Axis Camera, see the AxisCamera example for details on
 	 * using an Axis Camera.
 	 *
-	 * Sample images can found here: http://wp.wpi.edu/wpilib/2015/01/16/sample-images-for-vision-projects/ 
+	 * Sample images can found here: http://wp.wpi.edu/wpilib/2015/01/16/sample-images-for-vision-projects/
 	 */
 	public class Robot extends SampleRobot {
 			//A structure to hold measurements of a particle
@@ -36,12 +36,12 @@ public class Vision {
 				double BoundingRectTop;
 				double BoundingRectRight;
 				double BoundingRectBottom;
-				
+
 				public int compareTo(ParticleReport r)
 				{
 					return (int)(r.Area - this.Area);
 				}
-				
+
 				public int compare(ParticleReport r1, ParticleReport r2)
 				{
 					return (int)(r1.Area - r2.Area);
@@ -89,7 +89,7 @@ public class Vision {
 			}
 
 			public void autonomous() {
-				
+
 				 int session;
 				 Image frame;
 
@@ -112,11 +112,11 @@ public class Vision {
 				        //while (isOperatorControl() && isEnabled()) {
 
 				            //NIVision.IMAQdxGrab(session, frame, 1);
-				            
+
 				            		// wait for a motor update time
 				        }
 				    }
-				    
+
 				while (isAutonomous() && isEnabled())
 				{
 					//read file in from disk. For this example to run you need to copy image.jpg from the SampleImages folder to the
@@ -168,7 +168,7 @@ public class Vision {
 						particles.sort(null);
 
 						//This example only scores the largest particle. Extending to score all particles and choosing the desired one is left as an exercise
-						//for the reader. Note that this scores and reports information about a single particle (single L shaped target). To get accurate information 
+						//for the reader. Note that this scores and reports information about a single particle (single L shaped target). To get accurate information
 						//about the location of the tote (not just the distance) you will need to correlate two adjacent targets in order to find the true center of the tote.
 						scores.Aspect = AspectScore(particles.elementAt(0));
 						SmartDashboard.putNumber("Aspect", scores.Aspect);
@@ -185,7 +185,7 @@ public class Vision {
 
 					Timer.delay(0.005);				// wait for a motor update time
 				}
-				
+
 		        NIVision.IMAQdxStopAcquisition(session);
 
 			}
