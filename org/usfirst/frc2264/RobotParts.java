@@ -28,4 +28,5 @@ public final class RobotParts {
 	public static final int[] ANALOG = new int[] {
 		0, 1, 2, 3
 	};
+	public static final double CAMERA_ANGLE = 51.50219228499263;
 }
