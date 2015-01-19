@@ -1,16 +1,26 @@
-package org.usfirst.frc.team2264.robot;
-import java.lang.Math;
+package org.usfirst.frc2264.brandon_xus_code;
+
 import java.util.Comparator;
 import java.util.Vector;
+
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 
-import edu.wpi.first.wpilibj.vision.USBCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+/*
+ * Hey, Brandon, I had to excise this from the Vision.java file. You pasted it
+ * inside the existing class, overwriting the existing calculation code with this
+ * code, which didn't work. In addition, the code outside Vision.java still
+ * didn't work, so I commented and uncommented lines until it stopped throwing
+ * out compile errors.
+ * 
+ * So, might want to take a look at that.
+ */
 
 /**
  * Example of finding yellow totes based on retroreflective target.
@@ -22,7 +32,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  * Sample images can found here: http://wp.wpi.edu/wpilib/2015/01/16/sample-images-for-vision-projects/
  */
-public class Robot extends SampleRobot {
+public class BrandonXusBrokenRobotThatCanSee extends SampleRobot {
 		//A structure to hold measurements of a particle
 		public class ParticleReport implements Comparator<ParticleReport>, Comparable<ParticleReport>{
 			double PercentAreaToImageArea;
@@ -88,15 +98,15 @@ public class Robot extends SampleRobot {
 			 int session;
 			 Image frame;
 
-			    public void robotInit() {
+			  //  public void robotInit() {
 
-			        //frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+			        frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
 			        // the camera name (ex "cam0") can be found through the roborio web interface
 			        session = NIVision.IMAQdxOpenCamera("cam0",
 			                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 			        NIVision.IMAQdxConfigureGrab(session);
-			    }
+			  //  }
 
 			        NIVision.IMAQdxStartAcquisition(session);
 
@@ -109,8 +119,8 @@ public class Robot extends SampleRobot {
 			            //NIVision.IMAQdxGrab(session, frame, 1);
 
 			            		// wait for a motor update time
-			        }
-			    }
+			      //  }
+			    //}
 
 			while (isAutonomous() && isEnabled())
 			{
