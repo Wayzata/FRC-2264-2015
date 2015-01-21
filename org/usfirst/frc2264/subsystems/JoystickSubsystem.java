@@ -32,7 +32,7 @@ public class JoystickSubsystem extends Subsystem {
 		return joystick.getZ();
 	}
 	
-	public double getTwist() {
-		return joystick.getTwist();
+	public double getThrottle() {
+		return joystick.getThrottle();
 	}
 }
