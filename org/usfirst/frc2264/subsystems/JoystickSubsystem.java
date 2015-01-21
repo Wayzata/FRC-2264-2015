@@ -29,6 +29,10 @@ public class JoystickSubsystem extends Subsystem {
 	}
 	
 	public double getZ() {
+		return joystick.getZ();
+	}
+	
+	public double getTwist() {
 		return joystick.getTwist();
 	}
 }
