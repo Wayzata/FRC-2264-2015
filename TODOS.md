@@ -3,11 +3,14 @@ TODOS
 
  * Code and test Subsystems
     * Claw
+       * PWM 0
     * Joystick
        * Note: Either joystick may or may not work.
-    * Lift
     * Switch
-    * Vision
+       * Look for docs on using Limit Switches
+    * Lift
+       * PWM 1
+    * Vision - Brandon Xu
  * Set up Commands
     * Autonomous
        * Move to the box

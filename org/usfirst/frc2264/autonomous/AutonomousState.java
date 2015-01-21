@@ -4,6 +4,5 @@ public enum AutonomousState {
 	FIND_BOX,
 	MOVE_TO_BOX,
 	GRAB_BOX,
-	END,
-	DEBUG;
+	END;
 }

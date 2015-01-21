@@ -1,10 +1,8 @@
 package org.usfirst.frc2264.autonomous;
 
-import org.usfirst.frc2264.Debug;
 import org.usfirst.frc2264.commands.CommandBase;
 
-import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,12 +18,18 @@ public class AutonomousCommand extends CommandBase {
 	}
 	protected void initialize() {
 		System.out.println("Autonomous mode started.");
-		this.state = AutonomousState.DEBUG;
+		this.state = AutonomousState.FIND_BOX;
 	}
+	Joystick j = new Joystick(0);
 	protected void execute() {
 		switch(this.state) {
 		case FIND_BOX:
 			// TODO
+			for(Integer i = 0; i < 4; ++i)
+				SmartDashboard.putNumber(i.toString() + "a", j.getRawAxis(i));
+			for(Integer i = 1; i <= 7; ++i)
+				SmartDashboard.putBoolean(i.toString() + "b", j.getRawButton(i));
+			SmartDashboard
 			break;
 		case MOVE_TO_BOX:
 			// TODO
@@ -35,11 +39,6 @@ public class AutonomousCommand extends CommandBase {
 			break;
 		case END:
 			System.out.println("This command is over. This text shouldn't print maybe?");
-			break;
-		case DEBUG:
-//			for(int i = 1; i <= 4; ++i)
-//				driveSubsystem.manualSet(i, 0.5);
-			driveSubsystem.move(0.0, 0.1);
 			break;
 		}
 	}

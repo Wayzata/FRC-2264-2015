@@ -19,10 +19,10 @@ public class DriveSubsystemCAN extends Subsystem {
 	private RobotDrive drive;
 	
 	public DriveSubsystemCAN() {
-		this.front_left = new CANJaguar(RobotParts.CAN_MOTORS.FRONT_LEFT);
-		this.rear_left = new CANJaguar(RobotParts.CAN_MOTORS.REAR_LEFT);
-		this.front_right = new CANJaguar(RobotParts.CAN_MOTORS.FRONT_RIGHT);
-		this.rear_right = new CANJaguar(RobotParts.CAN_MOTORS.REAR_RIGHT);
+		this.front_left = new CANJaguar(RobotParts.DRIVE.FRONT_LEFT);
+		this.rear_left = new CANJaguar(RobotParts.DRIVE.REAR_LEFT);
+		this.front_right = new CANJaguar(RobotParts.DRIVE.FRONT_RIGHT);
+		this.rear_right = new CANJaguar(RobotParts.DRIVE.REAR_RIGHT);
 		this.drive = new RobotDrive_2264(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
 	}

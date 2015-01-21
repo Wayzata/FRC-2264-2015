@@ -1,5 +1,7 @@
 package org.usfirst.frc2264.subsystems;
 
+import javax.swing.ButtonGroup;
+
 import org.usfirst.frc2264.RobotParts;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -15,5 +17,8 @@ public class JoystickSubsystem extends Subsystem {
 	
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
+	}
+	public boolean isButtonPressed() {
+		return this.joystick.getRawButton(1);
 	}
 }

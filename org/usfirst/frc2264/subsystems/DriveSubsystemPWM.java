@@ -12,10 +12,10 @@ public class DriveSubsystemPWM extends Subsystem {
 	private RobotDrive drive;
 	
 	public DriveSubsystemPWM() {
-		this.front_left = new Jaguar(RobotParts.PWM_MOTORS.FRONT_LEFT);
-		this.rear_left = new Jaguar(RobotParts.PWM_MOTORS.REAR_LEFT);
-		this.front_right = new Jaguar(RobotParts.PWM_MOTORS.FRONT_RIGHT);
-		this.rear_right = new Jaguar(RobotParts.PWM_MOTORS.REAR_RIGHT);
+		this.front_left = new Jaguar(0);
+		this.rear_left = new Jaguar(1);
+		this.front_right = new Jaguar(2);
+		this.rear_right = new Jaguar(3);
 		this.drive = new RobotDrive(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
 	}
