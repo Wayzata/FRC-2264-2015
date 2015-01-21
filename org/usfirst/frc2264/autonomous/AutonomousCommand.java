@@ -1,6 +1,7 @@
 package org.usfirst.frc2264.autonomous;
 
 import org.usfirst.frc2264.commands.CommandBase;
+import org.usfirst.frc2264.subsystems.Subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -13,7 +14,7 @@ public class AutonomousCommand extends CommandBase {
 	
 	public AutonomousCommand() {
 		super("Autonomous");
-		this.requires(driveSubsystem);
+		this.requires(Subsystems.drive);
 	}
 	protected void initialize() {
 		System.out.println("Autonomous mode started.");

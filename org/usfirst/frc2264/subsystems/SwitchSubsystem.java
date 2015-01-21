@@ -13,9 +13,9 @@ public class SwitchSubsystem extends Subsystem {
     public void initDefaultCommand() {
     	this.setDefaultCommand(null);
     }
-//    public boolean getState() {
-//    	return this.trigger.getTriggerState();
-//    }
+    public boolean getState() {
+    	return this.trigger.get();
+    }
     public void debugPollAllSwitches() {
     	if(trigger.get())
     		throw new RuntimeException("!");
