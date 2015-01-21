@@ -1,21 +1,29 @@
 package org.usfirst.frc2264.subsystems;
 
+import org.usfirst.frc2264.Debug;
 import org.usfirst.frc2264.RobotParts;
+import org.usfirst.frc2264.proto.RobotDrive_2264;
 
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
+import edu.wpi.first.wpilibj.can.CANNotInitializedException;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.communication.UsageReporting;
+import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tInstances;
+import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
 
 public class DriveSubsystemCAN extends Subsystem {
-	private Jaguar front_left, rear_left, front_right, rear_right;
+	private CANJaguar front_left, rear_left, front_right, rear_right;
 	private RobotDrive drive;
 	
 	public DriveSubsystemCAN() {
-		this.front_left = new Jaguar(RobotParts.CAN_MOTORS.FRONT_LEFT);
-		this.rear_left = new Jaguar(RobotParts.CAN_MOTORS.REAR_LEFT);
-		this.front_right = new Jaguar(RobotParts.CAN_MOTORS.FRONT_RIGHT);
-		this.rear_right = new Jaguar(RobotParts.CAN_MOTORS.REAR_RIGHT);
-		this.drive = new RobotDrive(this.front_left, this.rear_left,
+		this.front_left = new CANJaguar(RobotParts.CAN_MOTORS.FRONT_LEFT);
+		this.rear_left = new CANJaguar(RobotParts.CAN_MOTORS.REAR_LEFT);
+		this.front_right = new CANJaguar(RobotParts.CAN_MOTORS.FRONT_RIGHT);
+		this.rear_right = new CANJaguar(RobotParts.CAN_MOTORS.REAR_RIGHT);
+		this.drive = new RobotDrive_2264(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
 	}
 	

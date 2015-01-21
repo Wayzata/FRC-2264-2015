@@ -3,12 +3,10 @@ TODOS
 
  * Code and test Subsystems
     * Claw
-    * Drive
-       * CAN
-       * PWM
     * Joystick
        * Note: Either joystick may or may not work.
     * Lift
+    * Switch
     * Vision
  * Set up Commands
     * Autonomous
