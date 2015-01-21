@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+@Deprecated
 public class DriveSubsystemPWM extends Subsystem {
 	private Jaguar front_left, rear_left, front_right, rear_right;
 	private RobotDrive drive;
