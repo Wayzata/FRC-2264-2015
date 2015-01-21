@@ -3,7 +3,6 @@ package org.usfirst.frc2264.autonomous;
 import org.usfirst.frc2264.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -29,7 +28,6 @@ public class AutonomousCommand extends CommandBase {
 				SmartDashboard.putNumber(i.toString() + "a", j.getRawAxis(i));
 			for(Integer i = 1; i <= 7; ++i)
 				SmartDashboard.putBoolean(i.toString() + "b", j.getRawButton(i));
-			SmartDashboard
 			break;
 		case MOVE_TO_BOX:
 			// TODO

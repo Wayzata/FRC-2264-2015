@@ -1,7 +1,5 @@
 package org.usfirst.frc2264.subsystems;
 
-import org.usfirst.frc2264.RobotParts;
-
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;

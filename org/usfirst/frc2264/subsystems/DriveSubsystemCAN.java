@@ -1,18 +1,11 @@
 package org.usfirst.frc2264.subsystems;
 
-import org.usfirst.frc2264.Debug;
 import org.usfirst.frc2264.RobotParts;
 import org.usfirst.frc2264.proto.RobotDrive_2264;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
-import edu.wpi.first.wpilibj.can.CANNotInitializedException;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.communication.UsageReporting;
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tInstances;
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
 
 public class DriveSubsystemCAN extends Subsystem {
 	private CANJaguar front_left, rear_left, front_right, rear_right;

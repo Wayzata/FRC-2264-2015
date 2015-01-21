@@ -1,7 +1,6 @@
 package org.usfirst.frc2264.subsystems;
 
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawSubsystem extends Subsystem {

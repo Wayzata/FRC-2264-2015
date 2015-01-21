@@ -1,7 +1,5 @@
 package org.usfirst.frc2264.subsystems;
 
-import javax.swing.ButtonGroup;
-
 import org.usfirst.frc2264.RobotParts;
 
 import edu.wpi.first.wpilibj.Joystick;
