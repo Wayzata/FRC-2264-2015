@@ -9,7 +9,7 @@ public class JoystickSubsystem extends Subsystem {
 	private Joystick joystick;
 	
 	public JoystickSubsystem() {
-		this.joystick = new Joystick(RobotParts.CONTROLLERS.JOYSTICK);
+		this.joystick = new Joystick(RobotParts.JOYSTICK);
 	}
 	
 	protected void initDefaultCommand() {
