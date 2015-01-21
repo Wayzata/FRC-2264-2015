@@ -6,17 +6,29 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class JoystickSubsystem extends Subsystem {
-	private Joystick joystick, slider;
+	private Joystick joystick;
 	
 	public JoystickSubsystem() {
 		this.joystick = new Joystick(RobotParts.CONTROLLERS.JOYSTICK);
-		this.slider = new Joystick(RobotParts.CONTROLLERS.SLIDER);
 	}
 	
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
+	
 	public boolean isButtonPressed() {
 		return this.joystick.getRawButton(1);
+	}
+	
+	public double getX() {
+		return joystick.getX();
+	}
+	
+	public double getY() {
+		return joystick.getY();
+	}
+	
+	public double getZ() {
+		return joystick.getTwist();
 	}
 }
