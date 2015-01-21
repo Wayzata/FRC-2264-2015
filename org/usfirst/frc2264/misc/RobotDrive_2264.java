@@ -1,4 +1,4 @@
-package org.usfirst.frc2264.proto;
+package org.usfirst.frc2264.misc;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;

@@ -13,8 +13,8 @@ public class ClawSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	@Deprecated
-	public void manual(double speed) {
-		this.jaguar.set(-speed);
+	public void setSpeed(double speed) {
+		this.jaguar.set(speed);
 	}
+	public void stop() { this.setSpeed(0.0); }
 }
