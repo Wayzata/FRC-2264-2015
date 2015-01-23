@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSubsystemCAN extends Subsystem {
 	private CANJaguar front_left, rear_left, front_right, rear_right;
-	private RobotDrive drive;
+	private RobotDrive_2264 drive;
 	
 	public DriveSubsystemCAN() {
 		this.front_left = new CANJaguar(RobotParts.DRIVE.FRONT_LEFT);
