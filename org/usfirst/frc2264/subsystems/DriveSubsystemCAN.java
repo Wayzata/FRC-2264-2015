@@ -23,12 +23,19 @@ public class DriveSubsystemCAN extends Subsystem {
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	public void move(double theta, double d) {
-		this.drive.mecanumDrive_Polar(d, theta, 0);
+	
+	public void move(double x, double y) {
+		this.drive.mecanumDrive_Cartesian(x, y, 0, 0);
 	}
+	
+	public void move(double x, double y, double theta) {
+		this.drive.mecanumDrive_Cartesian(x, y, theta, 0);
+	}
+	
 	public void turn(double theta) {
 		this.drive.mecanumDrive_Polar(0, 0, theta);
 	}
+	
 	@Deprecated
 	public void manualSet(int motor, double v) {
 		switch(motor) {

@@ -14,7 +14,7 @@ public class AutonomousCommand extends CommandBase {
 	
 	public AutonomousCommand() {
 		super("Autonomous");
-		this.requires(Subsystems.drive);
+		// this.requires(Subsystems.drive);
 	}
 	protected void initialize() {
 		System.out.println("Autonomous mode started.");

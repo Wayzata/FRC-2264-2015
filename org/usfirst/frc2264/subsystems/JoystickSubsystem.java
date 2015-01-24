@@ -1,5 +1,8 @@
 package org.usfirst.frc2264.subsystems;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.usfirst.frc2264.RobotParts;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,10 +19,6 @@ public class JoystickSubsystem extends Subsystem {
 		this.setDefaultCommand(null);
 	}
 	
-	public boolean isButtonPressed() {
-		return this.joystick.getRawButton(1);
-	}
-	
 	public double getX() {
 		return joystick.getX();
 	}
@@ -29,10 +28,30 @@ public class JoystickSubsystem extends Subsystem {
 	}
 	
 	public double getZ() {
-		return joystick.getZ();
+		return joystick.getRawAxis(2);
 	}
 	
 	public double getThrottle() {
 		return joystick.getThrottle();
+	}
+	
+	// TODO do something about the isButtonPressed() methods
+	public boolean isButtonPressed() {
+		return this.joystick.getRawButton(1);
+	}
+	
+	public boolean isButtonPressed(int portNum) {
+		return joystick.getRawButton(portNum);
+	}
+	
+	public List<Integer> getButtonsPressed() {
+		LinkedList<Integer> buttons = new LinkedList<Integer>();
+		
+		for (int i = 0; i < joystick.getButtonCount(); i++) {
+			if (joystick.getRawButton(i)) {
+				buttons.add(i);
+			}
+		}
+		return buttons;
 	}
 }
