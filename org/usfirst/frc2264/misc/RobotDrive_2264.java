@@ -8,7 +8,7 @@ public class RobotDrive_2264 extends RobotDrive {
 			SpeedController rearLeftMotor, SpeedController frontRightMotor,
 			SpeedController rearRightMotor) {
 		super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
-		this.m_isCANInitialized = true;
+		// this.m_isCANInitialized = true; // apparently should throw an error but does not on Brandon's stupid computer
 	}
-
+	
 }
