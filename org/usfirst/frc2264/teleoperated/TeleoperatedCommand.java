@@ -1,6 +1,9 @@
 package org.usfirst.frc2264.teleoperated;
 
+import org.usfirst.frc2264.subsystems.Subsystems;
+
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -10,6 +13,8 @@ public class TeleoperatedCommand extends Command {
     public TeleoperatedCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.requires(Subsystems.lift);
+    	this.requires(Subsystems.joystick);
     }
 
     // Called just before this Command runs the first time
@@ -18,11 +23,12 @@ public class TeleoperatedCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Subsystems.lift.setSpeed(Subsystems.joystick.getZ());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return Subsystems.joystick.isButtonPressed();
     }
 
     // Called once after isFinished returns true

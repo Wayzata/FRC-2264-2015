@@ -7,6 +7,6 @@ public class Subsystems {
 	public static SwitchSubsystem clawTactileSwitch = new SwitchSubsystem(0 /* TODO */);
 	public static DriveSubsystemCAN drive = new DriveSubsystemCAN();
 	public static JoystickSubsystem joystick = new JoystickSubsystem();
-	public static LiftSubsystem lift = new LiftSubsystem();
+	public static LiftSubsystem lift = new LiftSubsystem(0);
 	public static VisionSubsystem vision = new VisionSubsystem();
 }
