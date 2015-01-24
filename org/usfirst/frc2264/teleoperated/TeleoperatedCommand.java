@@ -30,7 +30,7 @@ public class TeleoperatedCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	localLift.setSpeed(0.4 * localJoystick.getZ());
-    	localDrive.move(localJoystick.getX(), localJoystick.getY());
+    	localDrive.move(localJoystick.getX(), localJoystick.getY(), localJoystick.getThrottle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
