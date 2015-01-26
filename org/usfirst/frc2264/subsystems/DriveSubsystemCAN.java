@@ -4,7 +4,6 @@ import org.usfirst.frc2264.RobotParts;
 import org.usfirst.frc2264.misc.RobotDrive_2264;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSubsystemCAN extends Subsystem {
