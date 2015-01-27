@@ -20,15 +20,15 @@ public class AutonomousCommand extends CommandBase {
 		System.out.println("Autonomous mode started.");
 		this.state = AutonomousState.FIND_BOX;
 	}
-	Joystick j = new Joystick(0);
+	Joystick localJoystick = new Joystick(0);
 	protected void execute() {
 		switch(this.state) {
 		case FIND_BOX:
 			// TODO
 			for(Integer i = 0; i < 4; ++i)
-				SmartDashboard.putNumber(i.toString() + "a", j.getRawAxis(i));
+				SmartDashboard.putNumber(i.toString() + "a", localJoystick.getRawAxis(i));
 			for(Integer i = 1; i <= 7; ++i)
-				SmartDashboard.putBoolean(i.toString() + "b", j.getRawButton(i));
+				SmartDashboard.putBoolean(i.toString() + "b", localJoystick.getRawButton(i));
 			break;
 		case MOVE_TO_BOX:
 			// TODO
