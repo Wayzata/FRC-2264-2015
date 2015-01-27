@@ -12,7 +12,7 @@ public class TeleoperatedCommand extends Command {
 	public JoystickSubsystem localJoystick;
 	public DriveSubsystemCAN localDrive;
     public TeleoperatedCommand() {
-        // Use requires() here to declare subsystem dependencies
+        // TODO Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	localLift = new LiftSubsystem(0);
     	localJoystick = new JoystickSubsystem();
@@ -20,6 +20,7 @@ public class TeleoperatedCommand extends Command {
     	this.requires(localLift);
     	this.requires(localJoystick);
     	this.requires(localDrive);
+    	
     }
 
     // Called just before this Command runs the first time
@@ -42,7 +43,7 @@ public class TeleoperatedCommand extends Command {
     protected void end() {
     	
     }
-
+  
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
