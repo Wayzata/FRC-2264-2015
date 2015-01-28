@@ -3,6 +3,7 @@ package org.usfirst.frc2264.teleoperated;
 import org.usfirst.frc2264.subsystems.DriveSubsystemCAN;
 import org.usfirst.frc2264.subsystems.JoystickSubsystem;
 import org.usfirst.frc2264.subsystems.LiftSubsystem;
+import org.usfirst.frc2264.subsystems.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Command;
 

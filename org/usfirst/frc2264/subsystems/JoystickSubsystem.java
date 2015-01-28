@@ -3,16 +3,14 @@ package org.usfirst.frc2264.subsystems;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.usfirst.frc2264.RobotParts;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class JoystickSubsystem extends Subsystem {
 	private Joystick joystick;
 	
-	public JoystickSubsystem() {
-		this.joystick = new Joystick(RobotParts.JOYSTICK);
+	public JoystickSubsystem(int joystick) {
+		this.joystick = new Joystick(joystick);
 	}
 	
 	protected void initDefaultCommand() {

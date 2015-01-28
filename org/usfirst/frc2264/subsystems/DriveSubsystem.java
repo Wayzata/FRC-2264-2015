@@ -1,21 +1,20 @@
 package org.usfirst.frc2264.subsystems;
 
-import org.usfirst.frc2264.RobotParts;
-import org.usfirst.frc2264.misc.RobotDrive_2264;
-
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DriveSubsystemCAN extends Subsystem {
-	private CANJaguar front_left, rear_left, front_right, rear_right;
-	private RobotDrive_2264 drive;
+public class DriveSubsystem extends Subsystem {
+	private SpeedController front_left, rear_left, front_right, rear_right;
+	private RobotDrive drive;
 	
-	public DriveSubsystemCAN() {
-		this.front_left = new CANJaguar(RobotParts.DRIVE.FRONT_LEFT);
-		this.rear_left = new CANJaguar(RobotParts.DRIVE.REAR_LEFT);
-		this.front_right = new CANJaguar(RobotParts.DRIVE.FRONT_RIGHT);
-		this.rear_right = new CANJaguar(RobotParts.DRIVE.REAR_RIGHT);
-		this.drive = new RobotDrive_2264(this.front_left, this.rear_left,
+	public DriveSubsystem(int frontLeft, int frontRight, int rearLeft, int rearRight) {
+		this.front_left = new CANJaguar(frontLeft);
+		this.front_right = new CANJaguar(frontRight);
+		this.rear_left = new CANJaguar(rearLeft);
+		this.rear_right = new CANJaguar(rearRight);
+		this.drive = new RobotDrive(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
 	}
 	
@@ -24,7 +23,7 @@ public class DriveSubsystemCAN extends Subsystem {
 	}
 	
 	public void move(double x, double y) {
-		this.drive.mecanumDrive_Cartesian(x, y, 0, 0);
+		this.move(x, y, 0);
 	}
 	
 	public void move(double x, double y, double theta) {
@@ -32,7 +31,7 @@ public class DriveSubsystemCAN extends Subsystem {
 	}
 	
 	public void turn(double theta) {
-		this.drive.mecanumDrive_Polar(0, 0, theta);
+		this.move(0, 0, theta);
 	}
 	
 	@Deprecated

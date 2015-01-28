@@ -6,5 +6,7 @@ public class VisionSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	// TODO
+	// TODO!!!
+	public VisionSubsystem() {}
+	// TODO!!!
 }
