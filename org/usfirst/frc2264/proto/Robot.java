@@ -19,8 +19,8 @@ public class Robot extends SampleRobot {
     private Jaguar PWMthing;
 
     // Channels for the wheels
-    final int frontLeftChannel	= 6;
-    final int rearLeftChannel	= 4;
+    final int frontLeftChannel	= 4;
+    final int rearLeftChannel	= 3;
     final int frontRightChannel	= 2;
     final int rearRightChannel	= 1;
     
