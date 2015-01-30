@@ -14,20 +14,21 @@ public class Robot_2264 extends IterativeRobot {
 	
 	public void robotInit() {
 		// Initialise the autonomous command.
-		this.autonomousCommand = new AutonomousCommand();
-		this.teleopCommand = new TeleoperatedCommand();
 		CommandBase.init();
 	}
 	// Autonomous mode functions
 	public void autonomousInit() {
-		 this.autonomousCommand.start();
+		this.autonomousCommand = new AutonomousCommand();
+		this.autonomousCommand.start();
 	}
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run(); // runs the next command
 	}
 	// Teleoperated mode
 	public void teleopInit() {
-		this.autonomousCommand.cancel();
+		if(this.autonomousCommand != null)
+			this.autonomousCommand.cancel();
+		this.teleopCommand = new TeleoperatedCommand();
 		this.teleopCommand.start();
 	}
 	public void teleopPeriodic() {

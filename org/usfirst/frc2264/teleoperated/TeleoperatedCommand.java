@@ -6,17 +6,17 @@ import org.usfirst.frc2264.subsystems.Subsystems;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 
 public class TeleoperatedCommand extends Command {
-	// TODO make the shitty way of doing this not shitty
-	SpeedController lift_motor = new CANJaguar(RobotParts.LIFT);
 	
     public TeleoperatedCommand() {
         // TODO Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	this.requires(Subsystems.drive);
     	this.requires(Subsystems.joystick);
+    	this.requires(Subsystems.lift);
     }
 
     // Called just before this Command runs the first time
@@ -28,9 +28,7 @@ public class TeleoperatedCommand extends Command {
     protected void execute() {
     	Subsystems.drive.move(Subsystems.joystick.getX(), Subsystems.joystick.getY(),
     			Subsystems.joystick.getThrottle());
-    	
-    	// TODO also make this not shitty
-    	this.lift_motor.set(.4 * Subsystems.joystick.getZ());
+    	Subsystems.lift.setSpeed(.4 * Subsystems.joystick.getZ());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +38,8 @@ public class TeleoperatedCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	
+    	Subsystems.drive.move(0.0, 0.0);
+    	Subsystems.lift.setSpeed(0.0);
     }
   
     // Called when another command which requires one or more of the same

@@ -4,11 +4,14 @@ import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Heisenbug lives in here
+ */
 public class ClawSubsystem extends Subsystem {
 	private SpeedController motor;
 	
 	public ClawSubsystem(int port) {
-		this.motor = new CANJaguar(port);
+//		this.motor = new CANJaguar(port);
 	}
 	
 	protected void initDefaultCommand() {

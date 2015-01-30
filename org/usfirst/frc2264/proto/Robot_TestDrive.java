@@ -12,11 +12,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * This is a demo program showing how to use Mecanum control with the RobotDrive class.
  */
-public class Robot extends SampleRobot {
+public class Robot_TestDrive extends SampleRobot {
 	
     RobotDrive robotDrive;
     Joystick stick;
-    private Jaguar PWMthing;
 
     // Channels for the wheels
     final int frontLeftChannel	= 4;
@@ -27,8 +26,7 @@ public class Robot extends SampleRobot {
     // The channel on the driver station that the joystick is connected to
     final int joystickChannel	= 0;
 
-    public Robot() {
-    	PWMthing = new Jaguar(0);
+    public Robot_TestDrive() {
         robotDrive = new RobotDrive(new CANJaguar(frontLeftChannel), new CANJaguar(rearLeftChannel), new CANJaguar(frontRightChannel), new CANJaguar(rearRightChannel));
         robotDrive.setExpiration(0.1);
     	robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);	// invert the left side motors
