@@ -1,12 +1,8 @@
 package org.usfirst.frc2264.teleoperated;
 
-import org.usfirst.frc2264.RobotParts;
 import org.usfirst.frc2264.subsystems.Subsystems;
 
-import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 
 public class TeleoperatedCommand extends Command {
@@ -27,7 +23,7 @@ public class TeleoperatedCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Subsystems.drive.move(Subsystems.joystick.getX(), Subsystems.joystick.getY(),
-    			Subsystems.joystick.getThrottle());
+    			Subsystems.joystick.getTwist());
     	Subsystems.lift.setSpeed(.4 * Subsystems.joystick.getZ());
     }
 

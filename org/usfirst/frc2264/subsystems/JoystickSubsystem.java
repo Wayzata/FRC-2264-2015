@@ -8,6 +8,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class JoystickSubsystem extends Subsystem {
 	private Joystick joystick;
+	private static final class AXIS_SCALING {
+		public static final double X = -1.0;
+		public static final double Y = -1.0;
+		public static final double Z = 1.0;
+		public static final double TWIST = 0.25;
+	}
 	
 	public JoystickSubsystem(int joystick) {
 		this.joystick = new Joystick(joystick);
@@ -18,19 +24,19 @@ public class JoystickSubsystem extends Subsystem {
 	}
 	
 	public double getX() {
-		return joystick.getX();
+		return joystick.getX() * AXIS_SCALING.X;
 	}
 	
 	public double getY() {
-		return joystick.getY();
+		return joystick.getY() * AXIS_SCALING.Y;
 	}
 	
 	public double getZ() {
-		return joystick.getRawAxis(2);
+		return joystick.getRawAxis(2) * AXIS_SCALING.Z;
 	}
 	
-	public double getThrottle() {
-		return joystick.getThrottle();
+	public double getTwist() {
+		return joystick.getThrottle() * AXIS_SCALING.TWIST;
 	}
 	
 	// TODO do something about the isButtonPressed() methods

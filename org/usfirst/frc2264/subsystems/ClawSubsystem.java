@@ -1,6 +1,5 @@
 package org.usfirst.frc2264.subsystems;
 
-import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
