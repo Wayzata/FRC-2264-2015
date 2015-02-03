@@ -1,6 +1,6 @@
 package org.usfirst.frc2264.subsystems;
 
-import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
@@ -17,10 +17,10 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public LiftSubsystem(int motor, int levelSwitch, int homeSwitch) {
-		this.motor = new CANJaguar(motor);
+		this.motor = new CANTalon(motor);
 		this.levelSwitch = new DigitalInput(levelSwitch);
 		this.homeSwitch = new DigitalInput(homeSwitch);
-		// this.calibrate(); // TODO Readd this once the carriage is on.
+		// this.calibrate(); // TODO Re-add this once the carriage is on.
 	}
 	
 	public void calibrate() {

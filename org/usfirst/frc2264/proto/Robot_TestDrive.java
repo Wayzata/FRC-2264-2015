@@ -1,6 +1,6 @@
 package org.usfirst.frc2264.proto;
 
-import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
@@ -26,7 +26,7 @@ public class Robot_TestDrive extends SampleRobot {
     final int joystickChannel	= 0;
 
     public Robot_TestDrive() {
-        robotDrive = new RobotDrive(new CANJaguar(frontLeftChannel), new CANJaguar(rearLeftChannel), new CANJaguar(frontRightChannel), new CANJaguar(rearRightChannel));
+        robotDrive = new RobotDrive(new CANTalon(frontLeftChannel), new CANTalon(rearLeftChannel), new CANTalon(frontRightChannel), new CANTalon(rearRightChannel));
         robotDrive.setExpiration(0.1);
     	robotDrive.setInvertedMotor(MotorType.kFrontLeft, true);	// invert the left side motors
     	robotDrive.setInvertedMotor(MotorType.kRearLeft, true);		// you may need to change or remove this to match your robot

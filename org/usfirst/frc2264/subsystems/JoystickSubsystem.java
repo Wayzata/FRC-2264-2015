@@ -3,11 +3,8 @@ package org.usfirst.frc2264.subsystems;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.usfirst.frc2264.misc.ClawDirection;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class JoystickSubsystem extends Subsystem {
 	private Joystick driveJoystick, clawAndLiftJoystick;

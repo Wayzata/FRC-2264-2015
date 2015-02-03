@@ -1,10 +1,6 @@
 package org.usfirst.frc2264.autonomous;
 
 import org.usfirst.frc2264.commands.CommandBase;
-import org.usfirst.frc2264.subsystems.Subsystems;
-
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The command that runs when we start autonomous mode.

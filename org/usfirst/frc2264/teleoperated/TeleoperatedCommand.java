@@ -5,7 +5,6 @@ import org.usfirst.frc2264.subsystems.Subsystems;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
-
 public class TeleoperatedCommand extends Command {
 	
     public TeleoperatedCommand() {

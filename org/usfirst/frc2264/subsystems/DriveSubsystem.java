@@ -1,6 +1,6 @@
 package org.usfirst.frc2264.subsystems;
 
-import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,10 +10,10 @@ public class DriveSubsystem extends Subsystem {
 	private RobotDrive drive;
 	
 	public DriveSubsystem(int frontLeft, int frontRight, int rearLeft, int rearRight) {
-		this.front_left = new CANJaguar(frontLeft);
-		this.front_right = new CANJaguar(frontRight);
-		this.rear_left = new CANJaguar(rearLeft);
-		this.rear_right = new CANJaguar(rearRight);
+		this.front_left = new CANTalon(frontLeft);
+		this.front_right = new CANTalon(frontRight);
+		this.rear_left = new CANTalon(rearLeft);
+		this.rear_right = new CANTalon(rearRight);
 		this.drive = new RobotDrive(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
 	}

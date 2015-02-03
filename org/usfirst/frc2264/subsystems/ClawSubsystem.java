@@ -10,7 +10,7 @@ public class ClawSubsystem extends Subsystem {
 	private SpeedController motor;
 	
 	public ClawSubsystem(int port) {
-//		this.motor = new CANJaguar(port);
+//		this.motor = new CANTalon(port);
 	}
 	
 	protected void initDefaultCommand() {
