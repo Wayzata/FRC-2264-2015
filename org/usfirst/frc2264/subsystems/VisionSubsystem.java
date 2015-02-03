@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2264.robot;
+package org.usfirst.frc2264.subsystems;
 
 import java.lang.Math;
 import java.util.Comparator;
@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.vision.USBCamera;
  *
  * Sample images can found here: http://wp.wpi.edu/wpilib/2015/01/16/sample-images-for-vision-projects/ 
  */
-public class Robot extends SampleRobot
+public class VisionSubsystem extends SampleRobot
 {
 		//A structure to hold measurements of a particle
 		public class ParticleReport implements Comparator<ParticleReport>, Comparable<ParticleReport>
