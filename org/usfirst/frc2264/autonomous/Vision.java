@@ -1,19 +1,29 @@
-package org.usfirst.frc2264.autonomous;
+package org.usfirst.frc.team2264.robot;
+import edu.wpi.first.wpilibj.SampleRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team2264.robot.DriveSubsystem;
+import edu.wpi.first.wpilibj.Timer;
 
-import org.usfirst.frc2264.RobotParts;
-
-public class Vision {
-	public final double k; // In inches*pixels
-	public Vision() {
-		this(640, RobotParts.CAMERA_ANGLE);
-	}
-	public Vision(int imageWidth_px, double cameraAngle_deg) {
-		this(imageWidth_px, cameraAngle_deg, 7.0);
-	}
-	public Vision(int imageWidth_px, double cameraAngle_deg, double tapeLength_in) {
-		this.k = (tapeLength_in * imageWidth_px) / (2 * Math.tan(cameraAngle_deg * Math.PI / 360));
-	}
-	public double calculateDistance(int tapeWidth_px) {
-		return this.k / tapeWidth_px;
+public class Vision extends SampleRobot
+{
+	public void robotInit()
+	{ 
+		Robot vision = new Robot();
+		vision.robotInit();
+		double distance = 0;
+		DriveSubsystem drive = new DriveSubsystem(1, 2, 3, 4);
+		
+		do{
+			while (isAutonomous() && isEnabled())
+			{
+				vision.autonomous();
+				distance = SmartDashboard.getNumber("Distance");
+				if(SmartDashboard.getBoolean("IsTote"))
+				{
+					
+					drive.move(1, 1, 0);
+				}
+			}
+		}while(distance > 1);
 	}
 }
