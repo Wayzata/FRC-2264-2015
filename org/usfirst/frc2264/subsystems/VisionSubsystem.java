@@ -11,6 +11,7 @@ import com.ni.vision.NIVision.ImageType;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 public class VisionSubsystem extends Subsystem {
@@ -32,7 +33,7 @@ public class VisionSubsystem extends Subsystem {
 	private boolean boxCanBeSeen;
 	private double boxDirection, boxDistance;
 	
-	public VisionSubsystem(int frontLeft, int frontRight, int rearLeft, int rearRight) {
+	public VisionSubsystem() {
 		this.camera = new USBCamera();
 	}
 	
@@ -51,13 +52,18 @@ public class VisionSubsystem extends Subsystem {
 		NIVision.ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1); // TODO Figure out ALL OF THESE
 		
 		// Get an image
+		this.camera.startCapture();
 		camera.getImage(image);
-		NIVision.imaqColorThreshold(binaryImage, image, 255, NIVision.ColorMode.RGB,
-				new NIVision.Range(0xCF, 0xFF),
-				new NIVision.Range(0xCF, 0xFF),
-				new NIVision.Range(0x00, 0x3F));
+		this.camera.stopCapture();
+		NIVision.imaqColorThreshold(binaryImage, image, 255, NIVision.ColorMode.HSV,
+				new NIVision.Range(101,  64),
+				new NIVision.Range( 88, 255),
+				new NIVision.Range(134, 255));
+		CameraServer.getInstance().setImage(binaryImage);
+		Timer.delay(0.050); // 50msec
 		NIVision.imaqParticleFilter4(binaryImage, binaryImage, criteria, options, null); // TODO Most of these args. Find their purpose.
 		int numberOfParticles = NIVision.imaqCountParticles(binaryImage, 1); // TODO Find what `connectivity8' is.
+		SmartDashboard.putNumber("numberOfParticles", numberOfParticles); // TODO This be debug.
 		if(numberOfParticles > 0) {
 			ArrayList<ParticleReport> particles = new ArrayList<>();
 			for(int i = 0; i < numberOfParticles; ++i) {
@@ -87,9 +93,6 @@ public class VisionSubsystem extends Subsystem {
 		} else {
 			this.boxCanBeSeen = false;
 		}
-		
-		CameraServer.getInstance().setImage(binaryImage);
-		Timer.delay(0.050); // 50msec
 	}
 	
 	// TODO See if any of the below can be optimised away
