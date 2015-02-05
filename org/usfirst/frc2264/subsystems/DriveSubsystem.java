@@ -2,11 +2,10 @@ package org.usfirst.frc2264.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSubsystem extends Subsystem {
-	private SpeedController front_left, rear_left, front_right, rear_right;
+	private CANTalon front_left, rear_left, front_right, rear_right;
 	private RobotDrive drive;
 	
 	public DriveSubsystem(int frontLeft, int frontRight, int rearLeft, int rearRight) {
@@ -16,6 +15,8 @@ public class DriveSubsystem extends Subsystem {
 		this.rear_right = new CANTalon(rearRight);
 		this.drive = new RobotDrive(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
+		this.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 	
 	protected void initDefaultCommand() {

@@ -1,16 +1,13 @@
 package org.usfirst.frc2264.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- * Heisenbug lives in here
- */
 public class ClawSubsystem extends Subsystem {
-	private SpeedController motor;
+	private CANTalon motor;
 	
 	public ClawSubsystem(int port) {
-//		this.motor = new CANTalon(port);
+		this.motor = new CANTalon(port);
 	}
 	
 	protected void initDefaultCommand() {

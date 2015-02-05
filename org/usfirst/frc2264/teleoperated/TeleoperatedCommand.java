@@ -2,7 +2,6 @@ package org.usfirst.frc2264.teleoperated;
 
 import org.usfirst.frc2264.subsystems.Subsystems;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class TeleoperatedCommand extends Command {
@@ -17,7 +16,6 @@ public class TeleoperatedCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Timer.delay(1.0); // For Debug reasons.
     }
 
     // Called repeatedly when this Command is scheduled to run

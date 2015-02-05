@@ -2,12 +2,11 @@ package org.usfirst.frc2264.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class LiftSubsystem extends Subsystem {
-	private SpeedController motor;
+	private CANTalon motor;
 	private DigitalInput levelSwitch, homeSwitch;
 	private int level;
 	private final double speed = -0.25; // The motor is "backwards"

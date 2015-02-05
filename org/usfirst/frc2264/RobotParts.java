@@ -5,13 +5,13 @@ package org.usfirst.frc2264;
  */
 public final class RobotParts {
 	public static final class DRIVE {
-		public static final int FRONT_LEFT = 4;
-		public static final int REAR_LEFT = 3;
-		public static final int FRONT_RIGHT = 2;
-		public static final int REAR_RIGHT = 1;
+		public static final int FRONT_LEFT = 14;
+		public static final int REAR_LEFT = 13;
+		public static final int FRONT_RIGHT = 11;
+		public static final int REAR_RIGHT = 12;
 	};
-//	public static final int CLAW = 5;
-	public static final int LIFT = 6;
+//	public static final int CLAW = 16;
+	public static final int LIFT = 15;
 	public static final int SWITCH_LIFT_LEVEL = 8;
 	public static final int SWITCH_LIFT_HOME = 0;
 //	public static final int SWITCH_CLAW_CLOSED = 2;
