@@ -3,6 +3,7 @@ package org.usfirst.frc2264.teleoperated;
 import org.usfirst.frc2264.subsystems.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TeleoperatedCommand extends Command {
 	
@@ -22,7 +23,8 @@ public class TeleoperatedCommand extends Command {
     protected void execute() {
     	Subsystems.drive.move(Subsystems.joystick.getX(), Subsystems.joystick.getY(),
     			Subsystems.joystick.getTwist());
-    	Subsystems.lift.setLevel(3); // TODO Control from joypad
+    	//Subsystems.lift.setLevel(3); // TODO Control from joypad
+    	SmartDashboard.putNumber("POV value", Subsystems.joystick.getPOV());
     }
 
     // Make this return true when this Command no longer needs to run execute()

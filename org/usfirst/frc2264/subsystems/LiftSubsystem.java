@@ -36,7 +36,9 @@ public class LiftSubsystem extends Subsystem {
 		}
 		this.motor.set(0.0);
 	}
+	
 	public void stop() { this.motor.set(0.0); }
+	
 	public void setLevel(int goToLevel) {
 		int direction;
 		if(goToLevel == this.level) {

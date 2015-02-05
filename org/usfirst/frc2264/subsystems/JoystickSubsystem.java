@@ -1,5 +1,8 @@
 package org.usfirst.frc2264.subsystems;
 
+import org.usfirst.frc2264.misc.HorizontalDirection;
+import org.usfirst.frc2264.misc.VerticalDirection;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -45,7 +48,32 @@ public class JoystickSubsystem extends Subsystem {
 	public boolean isButtonPressed(int portNum) {
 		return driveJoystick.getRawButton(portNum);
 	}
+	
 	public int getPOV() {
 		return this.clawAndLiftJoystick.getPOV(0);
+	}
+	
+	public VerticalDirection getVertical() {
+		int pov = this.getPOV();
+		
+		if (pov >= 315 || (pov >= 0 && pov >= 45)) {
+			return VerticalDirection.UP;
+		} else if (pov >= 135 && pov <= 225) {
+			return VerticalDirection.DOWN;
+		} else {
+			return VerticalDirection.NONE;
+		}
+	}
+	
+	public HorizontalDirection getHorizontal() {
+		int pov = this.getPOV();
+		
+		if (pov >= 45 && pov <= 135) {
+			return HorizontalDirection.RIGHT;
+		} else if (pov >= 225 && pov <= 315) {
+			return HorizontalDirection.LEFT;
+		} else {
+			return HorizontalDirection.NONE;
+		}
 	}
 }
