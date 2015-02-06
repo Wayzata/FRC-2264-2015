@@ -1,48 +1,31 @@
 package org.usfirst.frc2264.autonomous;
 
 import org.usfirst.frc2264.commands.CommandBase;
+import org.usfirst.frc2264.subsystems.Subsystems;
 
 /**
  * The command that runs when we start autonomous mode.
  */
 public class AutonomousCommand extends CommandBase {
-	AutonomousState state;
-	
 	public AutonomousCommand() {
 		super("Autonomous");
-		// this.requires(Subsystems.drive);
+//		this.requires(Subsystems.claw);
+		this.requires(Subsystems.drive);
+		this.requires(Subsystems.lift);
+//		this.requires(Subsystems.vision);
 	}
 	protected void initialize() {
-		System.out.println("Autonomous mode started.");
-		this.state = AutonomousState.FIND_BOX;
 	}
 	protected void execute() {
-		switch(this.state) {
-		case FIND_BOX:
-			// TODO
-			break;
-		case MOVE_TO_BOX:
-			// TODO
-			break;
-		case GRAB_BOX:
-			// TODO
-			break;
-		case END:
-			System.out.println("This command is over. This text shouldn't print maybe?");
-			break;
-		}
 	}
 	protected void end() {
-		this.state = AutonomousState.END;
-		System.out.println("Ended autonomous mode.");
 	}
 	
 	protected boolean isFinished() {
-		return this.state == AutonomousState.END;
+		return this.isTimedOut();
 	}
 	
 	protected void interrupted() {
-		System.out.println("Interrupting autonomous mode (did teleop mode start?).");
 		this.end();
 	}
 }
