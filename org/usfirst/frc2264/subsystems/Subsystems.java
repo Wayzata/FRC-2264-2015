@@ -10,4 +10,5 @@ public class Subsystems {
 			RobotParts.JOYSTICK_CLAW_AND_LIFT);
 	public static LiftSubsystem lift = new LiftSubsystem(RobotParts.LIFT,
 			RobotParts.SWITCH_LIFT_LEVEL, RobotParts.SWITCH_LIFT_HOME);
+	public static VisionSubsystem vision = new VisionSubsystem();
 }
