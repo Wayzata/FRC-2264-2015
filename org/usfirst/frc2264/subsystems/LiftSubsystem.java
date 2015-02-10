@@ -57,4 +57,7 @@ public class LiftSubsystem extends Subsystem {
 		}
 		this.motor.set(0.0);
 	}
+	public int getLevel() { return this.level; }
+	public void incrementLevel() { this.setLevel(this.getLevel() + 1); }
+	public void decrementLevel() { this.setLevel(this.getLevel() - 1); }
 }
