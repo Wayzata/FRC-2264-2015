@@ -42,7 +42,7 @@ public class JoystickSubsystem extends Subsystem {
 	
 	// TODO do something about the isButtonPressed() methods
 	public boolean isButtonPressed() {
-		return this.driveJoystick.getRawButton(1);
+		return this.driveJoystick.getRawButton(2);
 	}
 	
 	public boolean isButtonPressed(int portNum) {

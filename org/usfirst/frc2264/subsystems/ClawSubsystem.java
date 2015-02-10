@@ -1,13 +1,13 @@
 package org.usfirst.frc2264.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawSubsystem extends Subsystem {
-	private CANTalon motor;
+	private Jaguar motor;
 	
 	public ClawSubsystem(int port) {
-		this.motor = new CANTalon(port);
+		this.motor = new Jaguar(port);
 	}
 	
 	protected void initDefaultCommand() {
