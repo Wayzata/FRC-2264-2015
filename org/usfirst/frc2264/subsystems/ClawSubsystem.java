@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawSubsystem extends Subsystem {
 	private Jaguar motor;
+	private double speed;
 	
 	public ClawSubsystem(int port) {
 		this.motor = new Jaguar(port);
@@ -13,8 +14,7 @@ public class ClawSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	public void setSpeed(double speed) {
-		this.motor.set(speed);
-	}
-	public void stop() { this.setSpeed(0.0); }
+	public void startOpening() { this.motor.set(this.speed); }
+	public void startClosing() { this.motor.set(-this.speed); }
+	public void stopMoving() { this.motor.set(0.0); }
 }

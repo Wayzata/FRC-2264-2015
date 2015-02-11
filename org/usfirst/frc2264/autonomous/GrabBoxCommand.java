@@ -1,0 +1,21 @@
+package org.usfirst.frc2264.autonomous;
+
+import org.usfirst.frc2264.commands.CommandBase;
+import org.usfirst.frc2264.subsystems.Subsystems;
+
+public class GrabBoxCommand extends CommandBase {
+	public GrabBoxCommand() {
+		super("Autonomous > Grab Box");
+		this.requires(Subsystems.claw);
+	}
+	public void initialize() {
+		Subsystems.claw.startClosing();
+	}
+	public void execute() {}
+
+	public boolean isFinished() {
+		return false;
+	}
+	public void end() {}
+	public void interrupted() {}
+}

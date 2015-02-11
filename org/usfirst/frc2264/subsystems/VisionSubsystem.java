@@ -1,13 +1,11 @@
 package org.usfirst.frc2264.subsystems;
 
 import java.util.ArrayList;
-
-import org.usfirst.frc2264.RobotParts;
+import java.util.Optional;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
-import com.ni.vision.NIVision.Point;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
@@ -23,16 +21,12 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 	 * @author tikiking1
 	 */
 	public static class BoxParams {
-		public final double direction, distance;
+		public final int relativeCentre, particleWidth;
 		// Direction in degrees from the centre, with right being positive
 		// Distance in feet
-		public BoxParams(double direction, double distance) {
-			this.direction = direction;
-			this.distance = distance;
-		}
-		@Override
-		public String toString() {
-			return String.format("%f degrees, %f feet", this.direction, this.distance);
+		public BoxParams(int relativeCentre, int particleWidth) {
+			this.relativeCentre = relativeCentre;
+			this.particleWidth = particleWidth;
 		}
 	}
 	public class ParticleReport implements Comparable<ParticleReport>
@@ -79,19 +73,16 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 		frame = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binaryFrame = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		criteria[0] = new NIVision.ParticleFilterCriteria2(NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MINIMUM, 100.0, 0, 0);
-		SmartDashboard.putNumber("Area min %", AREA_MINIMUM);
 		camera = new USBCamera("cam0");
 		camera.openCamera();
 		camera.startCapture();
 		camera.setWhiteBalanceAuto();
 		camera.setExposureAuto();
 	}
-	public BoxParams poll()
+	public Optional<BoxParams> poll()
 	{
 		camera.getImage(frame);
 		NIVision.imaqColorThreshold(binaryFrame, frame, 255, NIVision.ColorMode.HSV, TOTE_HUE_RANGE, TOTE_SAT_RANGE, TOTE_VAL_RANGE);
-		int numParticles = NIVision.imaqCountParticles(binaryFrame, 1);
-		//Send masked image to dashboard to assist in tweaking mask.
 		CameraServer.getInstance().setImage(binaryFrame);
 		Timer.delay(0.05);
 		//filter out small particles
@@ -99,7 +90,7 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 		criteria[0].lower = areaMin;
 		imaqError = NIVision.imaqParticleFilter4(binaryFrame, binaryFrame, criteria, filterOptions, null);
 		//Send particle count after filtering to dashboard
-		numParticles = NIVision.imaqCountParticles(binaryFrame, 1);
+		int numParticles = NIVision.imaqCountParticles(binaryFrame, 1);
 		if(numParticles > 0)
 		{
 			//Measure particles and sort by particle size
@@ -124,25 +115,20 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 			scores.ShortAspect = ShortSideScore(particles.get(0));
 			scores.AreaToConvexHullArea = ConvexHullAreaScore(particles.get(0));
 			boolean isTote = scores.Trapezoid > SCORE_MIN && (scores.LongAspect > SCORE_MIN || scores.ShortAspect > SCORE_MIN) && scores.AreaToConvexHullArea > SCORE_MIN;
-			boolean isLong = scores.LongAspect > scores.ShortAspect;
+//			boolean isLong = scores.LongAspect > scores.ShortAspect;
 			//Send distance and tote status to dashboard. The bounding rect, particularly the horizontal center (left - right) may be useful for rotating/driving towards a tote
-			SmartDashboard.putNumber("Bounding Left", particles.get(0).BoundingRectLeft);
-			SmartDashboard.putNumber("Bounding Right", particles.get(0).BoundingRectRight);
-			SmartDashboard.putNumber("Bounding Center", (particles.get(0).BoundingRectLeft + particles.get(0).BoundingRectRight) / 2);
-			SmartDashboard.putNumber("Image Center", NIVision.imaqGetImageSize(binaryFrame).width / 2);
-			SmartDashboard.putNumber("Relative Center", ((particles.get(0).BoundingRectLeft + particles.get(0).BoundingRectRight) / 2) - (NIVision.imaqGetImageSize(binaryFrame).width / 2));
-			SmartDashboard.putNumber("Width of Entire Image (in ft)", this.pixelsToFeet(NIVision.imaqGetImageSize(binaryFrame).width, isLong));
-			// Start putting the whole bounding box and image centre to the screen
-			NIVision.imaqDrawLineOnImage(binaryFrame, binaryFrame, NIVision.DrawMode.DRAW_VALUE,
-					new Point((int) particles.get(0).BoundingRectLeft, (int) particles.get(0).BoundingRectTop),
-					new Point((int) particles.get(0).BoundingRectLeft, (int) particles.get(0).BoundingRectBottom),
-					0x0000FF);
+//			SmartDashboard.putNumber("Bounding Left", particles.get(0).BoundingRectLeft);
+//			SmartDashboard.putNumber("Bounding Right", particles.get(0).BoundingRectRight);
+//			SmartDashboard.putNumber("Bounding Center", (particles.get(0).BoundingRectLeft + particles.get(0).BoundingRectRight) / 2);
+//			SmartDashboard.putNumber("Image Center", NIVision.imaqGetImageSize(binaryFrame).width / 2);
+//			SmartDashboard.putNumber("Relative Center", ((particles.get(0).BoundingRectLeft + particles.get(0).BoundingRectRight) / 2) - (NIVision.imaqGetImageSize(binaryFrame).width / 2));
+//			SmartDashboard.putNumber("Width of Entire Image (in ft)", this.pixelsToFeet(NIVision.imaqGetImageSize(binaryFrame).width, isLong));
 			if(isTote) {
-				double dist = computeDistance(binaryFrame, particles.get(0), isLong);
-				double angle = (180 / Math.PI) * Math.atan(this.pixelsToFeet(particles.get(0).BoundingRectLeft - particles.get(0).BoundingRectRight, isLong) / (dist));
-				return new BoxParams(angle, dist);
+				int relativeCentre = (int) ((particles.get(0).BoundingRectLeft + particles.get(0).BoundingRectRight) / 2) - (NIVision.imaqGetImageSize(binaryFrame).width / 2);
+				int particleWidth = (int) (particles.get(0).BoundingRectRight - particles.get(0).BoundingRectLeft);
+				return Optional.of(new BoxParams(relativeCentre, particleWidth));
 			} else {
-				return null;
+				return Optional.empty();
 			}
 		}
 		else
