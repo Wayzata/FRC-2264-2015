@@ -19,39 +19,10 @@ public class DriveSubsystem extends Subsystem {
 		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 	
-	protected void initDefaultCommand() {
-		this.setDefaultCommand(null);
-	}
+	protected void initDefaultCommand() { this.setDefaultCommand(null); }
 	
-	public void move(double x, double y) {
-		this.move(x, y, 0);
-	}
-	
-	public void move(double x, double y, double theta) {
-		this.drive.mecanumDrive_Cartesian(x, y, theta, 0);
-	}
-	
-	public void turn(double theta) {
-		this.move(0, 0, theta);
-	}
-	
-	@Deprecated
-	public void manualSet(int motor, double v) {
-		switch(motor) {
-		case 1:
-			this.front_left.set(v);
-			break;
-		case 2:
-			this.rear_left.set(v);
-			break;
-		case 3:
-			this.front_right.set(v);
-			break;
-		case 4:
-			this.rear_right.set(v);
-			break;
-		default:
-			throw new IllegalArgumentException();
-		}
-	}
+	public void move(double x, double y) { this.move(x, y, 0.0); }
+	public void move(double x, double y, double theta) { this.drive.mecanumDrive_Cartesian(x, y, theta, 0.0); }
+	public void turn(double theta) { this.move(0.0, 0.0, theta); }
+	public void stop() { this.move(0.0, 0.0, 0.0); }
 }

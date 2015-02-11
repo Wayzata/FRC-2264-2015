@@ -19,11 +19,12 @@ public class LiftSubsystem extends Subsystem {
 		this.motor = new CANTalon(motor);
 		this.levelSwitch = new DigitalInput(levelSwitch);
 		this.homeSwitch = new DigitalInput(homeSwitch);
-		// this.calibrate(); // TODO Re-add this once the carriage is on.
+		this.calibrate();
 	}
 	
 	public void calibrate() {
 		this.level = 0;
+		this.motor.enableBrakeMode(true);
 		if(this.homeSwitch.get()) return; // If we're already hitting the home
 			// switch, we're done.
 		// Move the motor up one level

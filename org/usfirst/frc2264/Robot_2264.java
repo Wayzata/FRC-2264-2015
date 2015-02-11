@@ -1,6 +1,6 @@
 package org.usfirst.frc2264;
 
-import org.usfirst.frc2264.autonomous.AutonomousCommand;
+import org.usfirst.frc2264.autonomous.AutonomousCommandGroup;
 import org.usfirst.frc2264.commands.CommandBase;
 import org.usfirst.frc2264.teleoperated.TeleoperatedCommand;
 
@@ -18,7 +18,7 @@ public class Robot_2264 extends IterativeRobot {
 	}
 	// Autonomous mode functions
 	public void autonomousInit() {
-		this.autonomousCommand = new AutonomousCommand();
+		this.autonomousCommand = new AutonomousCommandGroup();
 		this.autonomousCommand.start();
 	}
 	public void autonomousPeriodic() {

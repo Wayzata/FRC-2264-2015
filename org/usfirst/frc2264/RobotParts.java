@@ -16,7 +16,7 @@ public final class RobotParts {
 	public static final int SWITCH_LIFT_HOME = 0;
 //	public static final int SWITCH_CLAW_CLOSED = 2;
 //	public static final int SWITCH_CLAW_OPEN = 3;
-	public static final int JOYSTICK_DRIVE = 0;
-	public static final int JOYSTICK_CLAW_AND_LIFT = 1;
+	public static final int JOYSTICK_DRIVE = 1;
+	public static final int JOYSTICK_CLAW_AND_LIFT = 0;
 	public static final double CAMERA_ANGLE = 51.50219228499263;
 }
