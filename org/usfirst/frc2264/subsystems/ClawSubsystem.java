@@ -1,20 +1,43 @@
 package org.usfirst.frc2264.subsystems;
 
-import edu.wpi.first.wpilibj.Jaguar;
+import com.ni.vision.NIVision.ObjectType;
+
+import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClawSubsystem extends Subsystem {
-	private Jaguar motor;
+	private CANTalon motor;
+	private DigitalInput tick, stop;
 	private double speed;
 	
-	public ClawSubsystem(int port) {
-		this.motor = new Jaguar(port);
+	public ClawSubsystem(int port, int tick, int stop) {
+		this.motor = new CANTalon(port);
+		this.tick = new DigitalInput(tick);
+		this.stop = new DigitalInput(stop);
+		this.calibrate();
 	}
 	
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	public void startOpening() { this.motor.set(this.speed); }
-	public void startClosing() { this.motor.set(-this.speed); }
-	public void stopMoving() { this.motor.set(0.0); }
+	private void calibrate() {
+		this.startOpening();
+		while(!this.stop.get()) Timer.delay(0.01); // Wait until the switch gets triggered.
+		this.stop();
+	}
+	// High-level control
+	public void open() {
+		this.startOpening();
+		while(this.stop.get()) Timer.delay(0.01);
+		this.stop();
+	}
+	public void close(ObjectType type) {
+		//
+	}
+	// Low-level control
+	private void startOpening() { this.motor.set(this.speed); }
+	private void startClosing() { this.motor.set(-this.speed); }
+	public void stop() { this.motor.set(0.0); }
 }
