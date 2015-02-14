@@ -55,7 +55,7 @@ public class JoystickSubsystem extends Subsystem {
 	public VerticalDirection getVertical() {
 		int pov = this.getPOV();
 		
-		if (pov >= 315 || (pov >= 0 && pov >= 45)) {
+		if (pov >= 315 || (pov >= 0 && pov <= 45)) {
 			return VerticalDirection.UP;
 		} else if (pov >= 135 && pov <= 225) {
 			return VerticalDirection.DOWN;

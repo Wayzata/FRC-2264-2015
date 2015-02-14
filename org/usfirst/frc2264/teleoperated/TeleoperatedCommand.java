@@ -13,6 +13,7 @@ public class TeleoperatedCommand extends Command {
 		this.requires(Subsystems.drive);
 		this.requires(Subsystems.joystick);
 		this.requires(Subsystems.lift);
+		this.requires(Subsystems.vision);
 	}
 
 	protected void initialize() {
@@ -34,6 +35,7 @@ public class TeleoperatedCommand extends Command {
 			Subsystems.claw.startOpening();
 		else
 			Subsystems.claw.stop();
+		Subsystems.vision.sendImage();
 	}
 	protected boolean isFinished() {
 		return Subsystems.joystick.isButtonPressed();

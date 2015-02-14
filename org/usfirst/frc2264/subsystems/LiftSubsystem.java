@@ -10,7 +10,7 @@ public class LiftSubsystem extends Subsystem {
 	private CANTalon motor;
 	private DigitalInput levelSwitch;
 	private int level;
-	private final Double speed = -1.0; // The motor is "backwards"
+	private final Double speed = -1.0;
 	
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);

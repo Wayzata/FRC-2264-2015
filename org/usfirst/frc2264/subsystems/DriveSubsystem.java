@@ -15,14 +15,14 @@ public class DriveSubsystem extends Subsystem {
 		this.rear_right = new CANTalon(rearRight);
 		this.drive = new RobotDrive(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
-		this.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
+//		this.drive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
+//		this.drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
 	}
 	
 	protected void initDefaultCommand() { this.setDefaultCommand(null); }
 	
 	public void move(double x, double y) { this.move(x, y, 0.0); }
-	public void move(double x, double y, double theta) { this.drive.mecanumDrive_Cartesian(x, y, theta, 0.0); }
+	public void move(double x, double y, double theta) { this.drive.mecanumDrive_Cartesian(x, -theta, -y, 0.0); }
 	public void turn(double theta) { this.move(0.0, 0.0, theta); }
 	public void stop() { this.move(0.0, 0.0, 0.0); }
 }

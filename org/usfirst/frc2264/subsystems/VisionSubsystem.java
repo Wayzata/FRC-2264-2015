@@ -83,8 +83,7 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 	{
 		camera.getImage(frame);
 		NIVision.imaqColorThreshold(binaryFrame, frame, 255, NIVision.ColorMode.HSV, TOTE_HUE_RANGE, TOTE_SAT_RANGE, TOTE_VAL_RANGE);
-		CameraServer.getInstance().setImage(binaryFrame);
-		Timer.delay(0.05);
+		this.sendImage(binaryFrame);
 		//filter out small particles
 		float areaMin = (float)SmartDashboard.getNumber("Area min %", AREA_MINIMUM);
 		criteria[0].lower = areaMin;
@@ -210,5 +209,19 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 	 */
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
+	}
+	/**
+	 * @author tikiking1
+	 */
+	public void sendImage() {
+		camera.getImage(frame);
+		this.sendImage(frame);
+	}
+	/**
+	 * @author tikiking1
+	 */
+	public void sendImage(Image img) {
+		CameraServer.getInstance().setImage(img);
+		Timer.delay(0.05);
 	}
 }
