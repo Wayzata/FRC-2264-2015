@@ -50,4 +50,6 @@ public class LiftSubsystem extends Subsystem {
 	public int getLevel() { return this.level; }
 	public void incrementLevel() { this.setLevel(this.getLevel() + 1); }
 	public void decrementLevel() { this.setLevel(this.getLevel() - 1); }
+	@Deprecated
+	public void manualSet(double speed) { this.motor.set(this.speed * speed); }
 }

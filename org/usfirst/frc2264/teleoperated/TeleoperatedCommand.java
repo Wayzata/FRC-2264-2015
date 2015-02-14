@@ -20,10 +20,14 @@ public class TeleoperatedCommand extends Command {
 	protected void execute() {
 		Subsystems.drive.move(Subsystems.joystick.getX(), Subsystems.joystick.getY(),
 				Subsystems.joystick.getTwist());
+		// Lift
 		if(Subsystems.joystick.getVertical() == VerticalDirection.UP)
-			Subsystems.lift.incrementLevel();
+			Subsystems.lift.manualSet(1.0);
 		else if(Subsystems.joystick.getVertical() == VerticalDirection.DOWN)
-			Subsystems.lift.decrementLevel();
+			Subsystems.lift.manualSet(-1.0);
+		else
+			Subsystems.lift.manualSet(0.0);
+		// Claw
 		if(Subsystems.joystick.getHorizontal() == HorizontalDirection.LEFT)
 			Subsystems.claw.startClosing();
 		else if(Subsystems.joystick.getHorizontal() == HorizontalDirection.RIGHT)
