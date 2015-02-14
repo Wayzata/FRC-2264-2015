@@ -209,6 +209,6 @@ public class VisionSubsystem extends Subsystem {	//A structure to hold measureme
 	 * @author tikiking1
 	 */
 	protected void initDefaultCommand() {
-		// TODO
+		this.setDefaultCommand(null);
 	}
 }
