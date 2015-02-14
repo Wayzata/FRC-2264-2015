@@ -1,8 +1,9 @@
 package org.usfirst.frc2264.subsystems;
 
+import org.usfirst.frc2264.misc.Util;
+
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class LiftSubsystem extends Subsystem {
@@ -40,8 +41,8 @@ public class LiftSubsystem extends Subsystem {
 		}
 		this.motor.set(direction * this.speed);
 		while(goToLevel != this.level) {
-			while(this.levelSwitch.get()) Timer.delay(0.01); // Wait until the switch *stops* being triggered.
-			while(!this.levelSwitch.get()) Timer.delay(0.01); // Wait until the switch gets triggered.
+			Util.waitFor(() -> this.levelSwitch.get());
+			Util.waitFor(() -> !this.levelSwitch.get());
 			this.level += direction;
 		}
 		this.motor.set(0.0);
