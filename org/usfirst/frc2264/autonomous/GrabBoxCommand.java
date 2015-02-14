@@ -11,7 +11,7 @@ public class GrabBoxCommand extends CommandBase {
 	}
 	public void initialize() {
 		Subsystems.lift.setLevel(0);
-		Subsystems.claw.closeFor(1.0); // TODO This is complete guesswork.
+		Subsystems.claw.close();
 		Subsystems.lift.setLevel(1);
 	}
 	public void execute() {}
