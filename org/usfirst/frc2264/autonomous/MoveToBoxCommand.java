@@ -21,7 +21,8 @@ public class MoveToBoxCommand extends CommandBase {
     }
     protected void execute() {
     	this.params = Subsystems.vision.poll();
-		if(this.params.get().relativeCentre > 5) Subsystems.drive.move(0.0, FORWARD_SPEED, TURN_SPEED);
+    	if(!this.params.isPresent()) Subsystems.drive.turn(0.25);
+    	else if(this.params.get().relativeCentre > 5) Subsystems.drive.move(0.0, FORWARD_SPEED, TURN_SPEED);
 		else if(this.params.get().relativeCentre < -5) Subsystems.drive.move(0.0, FORWARD_SPEED, -TURN_SPEED);
 		else Subsystems.drive.move(0.0, FORWARD_SPEED, 0.0);
     }

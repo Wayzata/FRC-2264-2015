@@ -12,11 +12,8 @@ public final class RobotParts {
 	};
 	public static final int CLAW = 15;
 	public static final int LIFT = 16;
-	public static final int SWITCH_LIFT_LEVEL = 8; // TODO
-	public static final int SWITCH_LIFT_HOME = 0; // TODO
-	public static final int SWITCH_CLAW_TICK = 2; // TODO
-	public static final int SWITCH_CLAW_STOP = 3; // TODO
-	public static final int JOYSTICK_DRIVE = 1; // TODO
-	public static final int JOYSTICK_CLAW_AND_LIFT = 0; // TODO
+	public static final int SWITCH_LEVEL = 0;
+	public static final int JOYSTICK_DRIVE = 0;
+	public static final int JOYSTICK_CLAW_AND_LIFT = 1;
 	public static final double CAMERA_ANGLE = 51.50219228499263;
 }

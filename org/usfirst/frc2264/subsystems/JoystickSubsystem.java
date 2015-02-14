@@ -40,9 +40,8 @@ public class JoystickSubsystem extends Subsystem {
 		return driveJoystick.getRawAxis(3) * AXIS_SCALING.TWIST;
 	}
 	
-	// TODO do something about the isButtonPressed() methods
 	public boolean isButtonPressed() {
-		return this.driveJoystick.getRawButton(2);
+		return this.driveJoystick.getRawButton(4);
 	}
 	
 	public boolean isButtonPressed(int portNum) {

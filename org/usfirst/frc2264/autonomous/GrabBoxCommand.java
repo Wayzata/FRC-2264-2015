@@ -1,8 +1,9 @@
 package org.usfirst.frc2264.autonomous;
 
 import org.usfirst.frc2264.commands.CommandBase;
-import org.usfirst.frc2264.misc.ObjectSize;
 import org.usfirst.frc2264.subsystems.Subsystems;
+
+import edu.wpi.first.wpilibj.Timer;
 
 public class GrabBoxCommand extends CommandBase {
 	public GrabBoxCommand() {
@@ -12,7 +13,9 @@ public class GrabBoxCommand extends CommandBase {
 	}
 	public void initialize() {
 		Subsystems.lift.setLevel(0);
-		Subsystems.claw.close(ObjectSize.YELLOW_TOTE_LONG);
+		Subsystems.claw.startClosing();
+		Timer.delay(1.0);
+		Subsystems.claw.stop();
 		Subsystems.lift.setLevel(1);
 	}
 	public void execute() {}

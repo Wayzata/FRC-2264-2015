@@ -7,35 +7,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class LiftSubsystem extends Subsystem {
 	private CANTalon motor;
-	private DigitalInput levelSwitch, homeSwitch;
+	private DigitalInput levelSwitch;
 	private int level;
-	private final double speed = -0.25; // The motor is "backwards"
+	private final Double speed = -1.0; // The motor is "backwards"
 	
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
 	
-	public LiftSubsystem(int motor, int levelSwitch, int homeSwitch) {
+	public LiftSubsystem(int motor, int levelSwitch) {
 		this.motor = new CANTalon(motor);
 		this.levelSwitch = new DigitalInput(levelSwitch);
-		this.homeSwitch = new DigitalInput(homeSwitch);
 		this.calibrate();
 	}
 	
 	public void calibrate() {
 		this.level = 0;
 		this.motor.enableBrakeMode(true);
-		if(this.homeSwitch.get()) return; // If we're already hitting the home
-			// switch, we're done.
-		// Move the motor up one level
-		this.motor.set(this.speed);
-		while(!this.levelSwitch.get()) Timer.delay(0.01);
-		// Move the motor down
-		this.motor.set(-1.0 * this.speed);
-		while(!this.homeSwitch.get()) {
-			Timer.delay(0.01);
-		}
-		this.motor.set(0.0);
+		this.stop();
 	}
 	
 	public void stop() { this.motor.set(0.0); }
@@ -51,10 +40,9 @@ public class LiftSubsystem extends Subsystem {
 		}
 		this.motor.set(direction * this.speed);
 		while(goToLevel != this.level) {
+			while(this.levelSwitch.get()) Timer.delay(0.01); // Wait until the switch *stops* being triggered.
 			while(!this.levelSwitch.get()) Timer.delay(0.01); // Wait until the switch gets triggered.
 			this.level += direction;
-			// TODO We probably want some sort of set delay instead of the below.
-			while(this.levelSwitch.get()) Timer.delay(0.01); // Wait until the switch *stops* being triggered.
 		}
 		this.motor.set(0.0);
 	}
