@@ -1,11 +1,9 @@
 package org.usfirst.frc2264.subsystems;
 
-import org.usfirst.frc2264.RobotParts;
-
 public class Subsystems {
-	public static ClawSubsystem claw = new ClawSubsystem(RobotParts.CLAW, RobotParts.SWITCH_CLAW);
-	public static DriveSubsystem drive = new DriveSubsystem(RobotParts.DRIVE.FRONT_LEFT, RobotParts.DRIVE.FRONT_RIGHT, RobotParts.DRIVE.REAR_LEFT, RobotParts.DRIVE.REAR_RIGHT);
-	public static JoystickSubsystem joystick = new JoystickSubsystem(RobotParts.JOYSTICK_DRIVE, RobotParts.JOYSTICK_CLAW_AND_LIFT);
-	public static LiftSubsystem lift = new LiftSubsystem(RobotParts.LIFT, RobotParts.SWITCH_LIFT);
+	public static ClawSubsystem claw = new ClawSubsystem();
+	public static DriveSubsystem drive = new DriveSubsystem();
+	public static JoystickSubsystem joystick = new JoystickSubsystem();
+	public static LiftSubsystem lift = new LiftSubsystem();
 	public static VisionSubsystem vision = new VisionSubsystem();
 }

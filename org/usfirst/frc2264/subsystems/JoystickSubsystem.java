@@ -1,5 +1,6 @@
 package org.usfirst.frc2264.subsystems;
 
+import org.usfirst.frc2264.RobotParts;
 import org.usfirst.frc2264.misc.HorizontalDirection;
 import org.usfirst.frc2264.misc.VerticalDirection;
 
@@ -15,6 +16,10 @@ public class JoystickSubsystem extends Subsystem {
 		public static final double TWIST = 0.25;
 	}
 	
+	public JoystickSubsystem() {
+		this(RobotParts.JOYSTICK_DRIVE,
+				RobotParts.JOYSTICK_CLAW_AND_LIFT);
+	}
 	public JoystickSubsystem(int driveID, int clawAndLiftID) {
 		this.driveJoystick = new Joystick(driveID);
 		this.clawAndLiftJoystick = new Joystick(clawAndLiftID);
@@ -24,37 +29,18 @@ public class JoystickSubsystem extends Subsystem {
 		this.setDefaultCommand(null);
 	}
 	
-	public double getX() {
-		return driveJoystick.getRawAxis(0) * AXIS_SCALING.X;
-	}
+	public double getX() { return driveJoystick.getRawAxis(0) * AXIS_SCALING.X; }
+	public double getY() { return driveJoystick.getRawAxis(1) * AXIS_SCALING.Y; }
+	public double getZ() { return ((driveJoystick.getRawAxis(2) * AXIS_SCALING.Z) + 1) / 2; }
+	public double getTwist() { return driveJoystick.getRawAxis(3) * AXIS_SCALING.TWIST; }
+	public int getPOV() { return this.clawAndLiftJoystick.getPOV(0); }
 	
-	public double getY() {
-		return driveJoystick.getRawAxis(1) * AXIS_SCALING.Y;
-	}
+	public boolean isButtonPressed() { return this.isButtonPressed(4); }
+	public boolean isButtonPressed(int n) { return this.driveJoystick.getRawButton(n); }
 	
-	public double getZ() {
-		return ((driveJoystick.getRawAxis(2) * AXIS_SCALING.Z) + 1) / 2;
-	}
-	
-	public double getTwist() {
-		return driveJoystick.getRawAxis(3) * AXIS_SCALING.TWIST;
-	}
-	
-	public boolean isButtonPressed() {
-		return this.driveJoystick.getRawButton(4);
-	}
-	
-	public boolean isButtonPressed(int portNum) {
-		return driveJoystick.getRawButton(portNum);
-	}
-	
-	public int getPOV() {
-		return this.clawAndLiftJoystick.getPOV(0);
-	}
 	
 	public VerticalDirection getVertical() {
 		int pov = this.getPOV();
-		
 		if (pov >= 315 || (pov >= 0 && pov <= 45)) {
 			return VerticalDirection.UP;
 		} else if (pov >= 135 && pov <= 225) {
@@ -66,7 +52,6 @@ public class JoystickSubsystem extends Subsystem {
 	
 	public HorizontalDirection getHorizontal() {
 		int pov = this.getPOV();
-		
 		if (pov >= 45 && pov <= 135) {
 			return HorizontalDirection.RIGHT;
 		} else if (pov >= 225 && pov <= 315) {
