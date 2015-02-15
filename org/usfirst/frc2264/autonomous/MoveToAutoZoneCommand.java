@@ -3,27 +3,30 @@ package org.usfirst.frc2264.autonomous;
 import org.usfirst.frc2264.commands.CommandBase;
 import org.usfirst.frc2264.subsystems.Subsystems;
 
+import edu.wpi.first.wpilibj.Timer;
+
 public class MoveToAutoZoneCommand extends CommandBase {
-	
+	private boolean die = false;
 	public MoveToAutoZoneCommand() {
-		super("Autonmous > Move to Auto Zone");
+		super("Autonomous > Move to Auto Zone");
 		this.requires(Subsystems.drive);
 	}
 
 	protected void initialize() {
-		this.setTimeout(5.0);
-		Subsystems.drive.move(0.0, -0.2, 0.0);
 	}
 
 	protected void execute() {
+		Subsystems.drive.move(0.0, 1.0);
+		Timer.delay(2.5);
+		this.die = true;
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return this.die;
 	}
 
 	protected void end() {
-				
+		Subsystems.drive.stop();
 	}
 
 	protected void interrupted() {

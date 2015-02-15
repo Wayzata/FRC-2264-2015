@@ -19,7 +19,8 @@ public class TeleoperatedCommand extends Command {
 	protected void initialize() {
 	}
 	protected void execute() {
-		Subsystems.drive.move(Subsystems.joystick.getX(), Subsystems.joystick.getY(),
+		Subsystems.drive.move(Subsystems.joystick.getX() * Subsystems.joystick.getZ(),
+				Subsystems.joystick.getY() * Subsystems.joystick.getZ(),
 				Subsystems.joystick.getTwist());
 		// Lift
 		if(Subsystems.joystick.getVertical() == VerticalDirection.UP)

@@ -11,7 +11,7 @@ public class JoystickSubsystem extends Subsystem {
 	private static final class AXIS_SCALING {
 		public static final double X = 1.0;
 		public static final double Y = 1.0;
-		public static final double Z = 1.0;
+		public static final double Z = -1.0;
 		public static final double TWIST = 0.25;
 	}
 	
@@ -33,7 +33,7 @@ public class JoystickSubsystem extends Subsystem {
 	}
 	
 	public double getZ() {
-		return driveJoystick.getRawAxis(2) * AXIS_SCALING.Z;
+		return ((driveJoystick.getRawAxis(2) * AXIS_SCALING.Z) + 1) / 2;
 	}
 	
 	public double getTwist() {
