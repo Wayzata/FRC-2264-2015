@@ -1,8 +1,5 @@
 package org.usfirst.frc2264.subsystems;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
@@ -10,7 +7,6 @@ import com.ni.vision.NIVision.ImageType;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
 /**
