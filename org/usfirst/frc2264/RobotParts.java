@@ -13,6 +13,7 @@ public final class RobotParts {
 	public static final int CLAW = 15;
 	public static final int LIFT = 16;
 	public static final int SWITCH_LIFT = 0;
+	public static final int SWITCH_LIFT_BOTTOM = 1;
 	public static final int SWITCH_CLAW = 2;
 	public static final int JOYSTICK_DRIVE = 0;
 	public static final int JOYSTICK_CLAW_AND_LIFT = 1;

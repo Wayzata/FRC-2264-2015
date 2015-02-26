@@ -24,11 +24,9 @@ public class TeleoperatedCommand extends Command {
 				Subsystems.joystick.getTwist());
 		// Lift
 		if(Subsystems.joystick.getVertical() == VerticalDirection.UP)
-			Subsystems.lift.manualSet(1.0);
+			Subsystems.lift.incrementLevel();
 		else if(Subsystems.joystick.getVertical() == VerticalDirection.DOWN)
-			Subsystems.lift.manualSet(-1.0);
-		else
-			Subsystems.lift.manualSet(0.0);
+			Subsystems.lift.decrementLevel();
 		// Claw
 		if(Subsystems.joystick.getHorizontal() == HorizontalDirection.LEFT)
 			Subsystems.claw.startClosing();
@@ -36,6 +34,7 @@ public class TeleoperatedCommand extends Command {
 			Subsystems.claw.startOpening();
 		else
 			Subsystems.claw.stop();
+		Subsystems.lift.tick();
 		Subsystems.vision.sendImage();
 	}
 	protected boolean isFinished() {
