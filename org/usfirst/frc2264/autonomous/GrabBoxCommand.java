@@ -10,6 +10,7 @@ public class GrabBoxCommand extends CommandBase {
 		this.requires(Subsystems.lift);
 	}
 	public void initialize() {
+		Subsystems.claw.open();
 		Subsystems.claw.closeFor(1.0);
 		Subsystems.lift.setLevel(1);
 	}

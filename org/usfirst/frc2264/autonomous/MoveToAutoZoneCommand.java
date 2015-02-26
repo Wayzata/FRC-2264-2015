@@ -11,26 +11,14 @@ public class MoveToAutoZoneCommand extends CommandBase {
 		super("Autonomous > Move to Auto Zone");
 		this.requires(Subsystems.drive);
 	}
-
-	protected void initialize() {
-	}
-
+	protected void initialize() {}
 	protected void execute() {
 		Subsystems.drive.move(0.0, 1.0);
 		Timer.delay(2.5);
+		Subsystems.drive.stop();
 		this.die = true;
 	}
-
-	protected boolean isFinished() {
-		return this.die;
-	}
-
-	protected void end() {
-		Subsystems.drive.stop();
-	}
-
-	protected void interrupted() {
-		
-	}
-	
+	protected boolean isFinished() { return this.die; }
+	protected void end() { Subsystems.drive.stop(); }
+	protected void interrupted() {}
 }

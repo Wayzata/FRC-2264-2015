@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TeleoperatedCommand extends Command {
 	
 	public TeleoperatedCommand() {
+		this.requires(Subsystems.camera);
 		this.requires(Subsystems.claw);
 		this.requires(Subsystems.drive);
 		this.requires(Subsystems.joystick);
 		this.requires(Subsystems.lift);
-		this.requires(Subsystems.vision);
 	}
 
 	protected void initialize() {
@@ -35,7 +35,7 @@ public class TeleoperatedCommand extends Command {
 		else
 			Subsystems.claw.stop();
 		Subsystems.lift.tick();
-		Subsystems.vision.sendImage();
+		Subsystems.camera.tick();
 	}
 	protected boolean isFinished() {
 		return Subsystems.joystick.isButtonPressed();

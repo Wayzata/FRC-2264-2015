@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonomousCommandGroup extends CommandGroup {
 	public AutonomousCommandGroup() {
-		this.addSequential(new MoveToBoxCommand());
 		this.addSequential(new GrabBoxCommand());
 		this.addSequential(new MoveToAutoZoneCommand());
 	}
