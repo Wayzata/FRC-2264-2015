@@ -56,8 +56,7 @@ public class LiftSubsystem extends Subsystem {
 		if(this.targetLevel < 0) this.targetLevel = 0;
 		if(this.targetLevel > MAX_LEVEL) this.targetLevel = MAX_LEVEL;
 		if(this.targetLevel == this.getLevel()) {
-			this.stop();
-			return;
+			direction = 0;
 		} else if(this.targetLevel < this.getLevel()) {
 			direction = -1;
 		} else {
