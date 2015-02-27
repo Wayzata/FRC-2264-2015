@@ -5,15 +5,19 @@ import org.usfirst.frc2264.subsystems.Subsystems;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveToAutoZoneCommand extends Command {
-	public MoveToAutoZoneCommand() { this(2.5); }
-	public MoveToAutoZoneCommand(double timeout) {
-		this.setTimeout(timeout);
+	private double speed;
+	
+	public MoveToAutoZoneCommand() { this(1.0, 0.5); }
+	public MoveToAutoZoneCommand(double timeout, double speed) {
 		this.requires(Subsystems.drive);
+		this.speed = speed;
+		this.setTimeout(timeout);
 	}
 	protected void initialize() {
-		Subsystems.drive.move(0.0, 1.0);
 	}
-	protected void execute() {}
+	protected void execute() {
+		Subsystems.drive.move(0.0, this.speed);
+	}
 	protected boolean isFinished() { return this.isTimedOut(); }
 	protected void end() { Subsystems.drive.stop(); }
 	protected void interrupted() { this.end(); }
