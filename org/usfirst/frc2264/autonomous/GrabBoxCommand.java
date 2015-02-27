@@ -5,7 +5,7 @@ import org.usfirst.frc2264.subsystems.Subsystems;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class GrabBoxCommand extends Command {
-	public GrabBoxCommand() { this(2.0); }
+	public GrabBoxCommand() { this(1.5); }
 	public GrabBoxCommand(double timeout) {
 		this.requires(Subsystems.lift);
 		this.setTimeout(timeout);
