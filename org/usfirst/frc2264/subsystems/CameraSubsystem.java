@@ -1,11 +1,12 @@
 package org.usfirst.frc2264.subsystems;
 
+import org.usfirst.frc2264.misc.Util;
+
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
@@ -24,9 +25,14 @@ public class CameraSubsystem extends Subsystem {
 		this.camera.setExposureAuto();
 	}
 	protected void initDefaultCommand() { this.setDefaultCommand(null); }
-	public void tick() {
-		camera.getImage(this.frame);
-		CameraServer.getInstance().setImage(this.frame);
-		Timer.delay(1/20); // Allegedly, this is required. I don't see the reason, but...
+	public boolean tick() {
+		try {
+			camera.getImage(this.frame);
+			CameraServer.getInstance().setImage(this.frame);
+			return true;
+		} catch(Exception ex) {
+			Util.reportError(ex);
+			return false;
+		}
 	}
 }

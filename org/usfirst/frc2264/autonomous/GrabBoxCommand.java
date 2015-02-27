@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class GrabBoxCommand extends Command {
 	public GrabBoxCommand() {
-		super("Autonomous > Grab Box");
 		this.requires(Subsystems.claw);
 		this.requires(Subsystems.lift);
 	}

@@ -19,11 +19,17 @@ public class TeleoperatedCommand extends Command {
 
 	protected void initialize() {
 		Subsystems.lift.calibrate();
-		this.cameraThread = new Thread(new Runnable() {
-			public void run() {
-				Util.doEvery(1/15, Subsystems.camera::tick);
+		TeleoperatedCommand self = this;
+		this.cameraThread = new Thread("Camera") {
+			private boolean tickFrame() {
+				Subsystems.camera.tick();
+				return self.isRunning();
 			}
-		});
+			public void run() {
+				Util.doEvery(1/15, this::tickFrame);
+			}
+		};
+		this.cameraThread.start();
 	}
 	protected void execute() {
 		Subsystems.drive.move(Subsystems.joystick.getX() * Subsystems.joystick.getZ(),
@@ -48,7 +54,7 @@ public class TeleoperatedCommand extends Command {
 	}
 	protected void end() {
 		Subsystems.claw.stop();
-		Subsystems.drive.move(0.0, 0.0);
+		Subsystems.drive.stop();
 		Subsystems.lift.stop();
 	}
 	protected void interrupted() {}
