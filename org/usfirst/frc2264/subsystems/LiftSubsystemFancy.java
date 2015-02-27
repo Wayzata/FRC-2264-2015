@@ -70,14 +70,18 @@ public class LiftSubsystemFancy extends Subsystem {
 			} else if(this.state == State.ON_LEVEL && !this.levelSwitch.get()) {
 				this.state = State.ON_FLAT;
 				this.level += direction;
+				this.updateLevelOnDashboard();
 			}
 		} else {
 			Util.log("Not calibrated!");
 		}
 	}
 	public int getLevel() {
-		SmartDashboard.putNumber("Lift Level", this.level);
+		this.updateLevelOnDashboard();
 		return this.level;
+	}
+	public void updateLevelOnDashboard() {
+		SmartDashboard.putNumber("Lift Level", this.level);
 	}
 	public void incrementLevel() { this.setLevel(this.getLevel() + 1); }
 	public void decrementLevel() { this.setLevel(this.getLevel() - 1); }
