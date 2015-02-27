@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveToAutoZoneCommand extends Command {
 	private double speed;
 	
-	public MoveToAutoZoneCommand() { this(1.0, 0.5); }
+	public MoveToAutoZoneCommand() { this(2.5, 0.75); }
 	public MoveToAutoZoneCommand(double timeout, double speed) {
 		this.requires(Subsystems.drive);
 		this.speed = speed;
