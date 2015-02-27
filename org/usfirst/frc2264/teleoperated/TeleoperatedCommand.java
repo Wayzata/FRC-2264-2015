@@ -49,7 +49,6 @@ public class TeleoperatedCommand extends Command {
 			Subsystems.claw.startOpening();
 		else
 			Subsystems.claw.stop();
-		Subsystems.lift.tick();
 	}
 	protected boolean isFinished() {
 		return Subsystems.joystick.isButtonPressed();

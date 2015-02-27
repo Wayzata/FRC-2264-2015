@@ -19,12 +19,8 @@ public class LiftSubsystemManual extends Subsystem {
 	}
 	public LiftSubsystemManual(int motor, int levelSwitch, int bottomSwitch) {
 		this.motor = new CANTalon(motor);
+		this.motor.enableBrakeMode(true);
 		this.bottomSwitch = new DigitalInput(bottomSwitch);
-	}
-	
-	public void tick() {
-		if(this.bottomSwitch.get())
-			this.motor.set(0.0);
 	}
 	public void set(double speed) {
 		this.motor.set(speed);
