@@ -5,17 +5,17 @@ import org.usfirst.frc2264.subsystems.Subsystems;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class GrabBoxCommand extends Command {
-	public GrabBoxCommand() {
-		this.requires(Subsystems.claw);
+	public GrabBoxCommand() { this(1.0); }
+	public GrabBoxCommand(double timeout) {
 		this.requires(Subsystems.lift);
+		this.setTimeout(timeout);
 	}
-	public void initialize() {
-		Subsystems.claw.open();
-		Subsystems.claw.closeFor(1.0);
-//		Subsystems.lift.setLevel(1);
+	protected void initialize() {
 	}
-	public void execute() {}
-	public boolean isFinished() { return true; }
-	public void end() {}
-	public void interrupted() {}
+	protected void execute() {
+		Subsystems.lift.set(-1.0);
+	}
+	protected boolean isFinished() { return this.isTimedOut(); }
+	protected void end() { Subsystems.lift.stop(); }
+	protected void interrupted() { this.end(); }
 }
