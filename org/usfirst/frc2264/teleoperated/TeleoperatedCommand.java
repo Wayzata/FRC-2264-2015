@@ -37,13 +37,11 @@ public class TeleoperatedCommand extends Command {
 				Subsystems.joystick.getTwist());
 		// Lift
 		if(Subsystems.joystick.getVertical() == VerticalDirection.UP)
-			Subsystems.lift.incrementLevel();
-//			Subsystems.lift.set(1.0);
+			Subsystems.lift.set(-1.0);
 		else if(Subsystems.joystick.getVertical() == VerticalDirection.DOWN)
-			Subsystems.lift.decrementLevel();
-//			Subsystems.lift.set(-1.0);
-//		else
-//			Subsystems.lift.set(0.0);
+			Subsystems.lift.set(1.0);
+		else
+			Subsystems.lift.set(0.0);
 		// Claw
 		if(Subsystems.joystick.getHorizontal() == HorizontalDirection.LEFT)
 			Subsystems.claw.startClosing();
