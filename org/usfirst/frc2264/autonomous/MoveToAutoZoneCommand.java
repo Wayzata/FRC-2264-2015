@@ -1,11 +1,11 @@
 package org.usfirst.frc2264.autonomous;
 
-import org.usfirst.frc2264.commands.CommandBase;
 import org.usfirst.frc2264.subsystems.Subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
-public class MoveToAutoZoneCommand extends CommandBase {
+public class MoveToAutoZoneCommand extends Command {
 	private boolean die = false;
 	public MoveToAutoZoneCommand() {
 		super("Autonomous > Move to Auto Zone");

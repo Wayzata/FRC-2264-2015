@@ -1,13 +1,14 @@
 package org.usfirst.frc2264.teleoperated;
 
 import org.usfirst.frc2264.misc.HorizontalDirection;
+import org.usfirst.frc2264.misc.Util;
 import org.usfirst.frc2264.misc.VerticalDirection;
 import org.usfirst.frc2264.subsystems.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class TeleoperatedCommand extends Command {
-	
+	private Thread cameraThread;
 	public TeleoperatedCommand() {
 		this.requires(Subsystems.camera);
 		this.requires(Subsystems.claw);
@@ -17,6 +18,12 @@ public class TeleoperatedCommand extends Command {
 	}
 
 	protected void initialize() {
+		Subsystems.lift.calibrate();
+		this.cameraThread = new Thread(new Runnable() {
+			public void run() {
+				Util.doEvery(1/15, Subsystems.camera::tick);
+			}
+		});
 	}
 	protected void execute() {
 		Subsystems.drive.move(Subsystems.joystick.getX() * Subsystems.joystick.getZ(),
@@ -35,7 +42,6 @@ public class TeleoperatedCommand extends Command {
 		else
 			Subsystems.claw.stop();
 		Subsystems.lift.tick();
-		Subsystems.camera.tick();
 	}
 	protected boolean isFinished() {
 		return Subsystems.joystick.isButtonPressed();

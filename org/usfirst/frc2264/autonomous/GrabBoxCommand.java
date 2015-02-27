@@ -1,9 +1,10 @@
 package org.usfirst.frc2264.autonomous;
 
-import org.usfirst.frc2264.commands.CommandBase;
 import org.usfirst.frc2264.subsystems.Subsystems;
 
-public class GrabBoxCommand extends CommandBase {
+import edu.wpi.first.wpilibj.command.Command;
+
+public class GrabBoxCommand extends Command {
 	public GrabBoxCommand() {
 		super("Autonomous > Grab Box");
 		this.requires(Subsystems.claw);
