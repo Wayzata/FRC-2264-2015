@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class LiftSubsystem extends Subsystem {
+public class LiftSubsystemManual extends Subsystem {
 	private CANTalon motor;
 	private DigitalInput bottomSwitch;
 	
@@ -14,10 +14,10 @@ public class LiftSubsystem extends Subsystem {
 		this.setDefaultCommand(null);
 	}
 	
-	public LiftSubsystem() {
+	public LiftSubsystemManual() {
 		this(RobotParts.LIFT, RobotParts.SWITCH_LIFT, RobotParts.SWITCH_LIFT_BOTTOM);
 	}
-	public LiftSubsystem(int motor, int levelSwitch, int bottomSwitch) {
+	public LiftSubsystemManual(int motor, int levelSwitch, int bottomSwitch) {
 		this.motor = new CANTalon(motor);
 		this.bottomSwitch = new DigitalInput(bottomSwitch);
 	}

@@ -19,11 +19,11 @@ public class TeleoperatedCommand extends Command {
 
 	protected void initialize() {
 //		Subsystems.lift.calibrate();
-		TeleoperatedCommand self = this;
+		TeleoperatedCommand tcmd = this;
 		this.cameraThread = new Thread("Camera") {
 			private boolean tickFrame() {
 				Subsystems.camera.tick();
-				return self.isRunning();
+				return tcmd.isRunning();
 			}
 			public void run() {
 				Util.doEvery(1/15, this::tickFrame);

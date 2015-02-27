@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class LiftSubsystemFancy extends Subsystem {
+public class LiftSubsystemLeveled extends Subsystem {
 	private static enum State {
 		ON_LEVEL,
 		ON_FLAT
@@ -26,10 +26,10 @@ public class LiftSubsystemFancy extends Subsystem {
 		this.setDefaultCommand(null);
 	}
 	
-	public LiftSubsystemFancy() {
+	public LiftSubsystemLeveled() {
 		this(RobotParts.LIFT, RobotParts.SWITCH_LIFT, RobotParts.SWITCH_LIFT_BOTTOM);
 	}
-	public LiftSubsystemFancy(int motor, int levelSwitch, int bottomSwitch) {
+	public LiftSubsystemLeveled(int motor, int levelSwitch, int bottomSwitch) {
 		this.motor = new CANTalon(motor);
 		this.levelSwitch = new DigitalInput(levelSwitch);
 		this.bottomSwitch = new DigitalInput(bottomSwitch);
@@ -49,9 +49,6 @@ public class LiftSubsystemFancy extends Subsystem {
 		this.stop();
 	}
 	
-	public void setLevel(int targetLevel) {
-		this.targetLevel = targetLevel;
-	}
 	public void tick() {
 		if(this.calibrated) {
 			int direction;
@@ -70,27 +67,35 @@ public class LiftSubsystemFancy extends Subsystem {
 			} else if(this.state == State.ON_LEVEL && !this.levelSwitch.get()) {
 				this.state = State.ON_FLAT;
 				this.level += direction;
-				this.updateLevelOnDashboard();
+				this.updateLevelsOnDashboard();
 			}
 		} else {
 			Util.log("Not calibrated!");
 		}
 	}
+	public void setLevel(int level) {
+		this.level = level;
+		this.updateLevelsOnDashboard();
+	}
+	public void setTargetLevel(int targetLevel) {
+		this.targetLevel = targetLevel;
+		this.updateLevelsOnDashboard();
+	}
 	public int getLevel() {
-		this.updateLevelOnDashboard();
 		return this.level;
 	}
-	public void updateLevelOnDashboard() {
-		SmartDashboard.putNumber("Lift Level", this.level);
+	public int getTargetLevel() {
+		return this.targetLevel;
 	}
-	public void incrementLevel() { this.setLevel(this.getLevel() + 1); }
-	public void decrementLevel() { this.setLevel(this.getLevel() - 1); }
+	public void updateLevelsOnDashboard() {
+		SmartDashboard.putNumber("Lift Level", this.level);
+		SmartDashboard.putNumber("Target Level", this.targetLevel);
+	}
+	public void incrementLevel() { this.setTargetLevel(this.getLevel() + 1); }
+	public void decrementLevel() { this.setTargetLevel(this.getLevel() - 1); }
 	public void stop() { this.setMotorDirection(0.0); }
 	
 	private void setMotorDirection(double newDirection) {
-		if(newDirection != this.motorDirection) {
-			this.motorDirection = newDirection;
-			this.motor.set(this.motorDirection * SPEED);
-		}
+		this.motor.set(this.motorDirection * SPEED);
 	}
 }
