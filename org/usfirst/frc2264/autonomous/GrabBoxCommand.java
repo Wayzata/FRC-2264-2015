@@ -12,7 +12,7 @@ public class GrabBoxCommand extends Command {
 	public void initialize() {
 		Subsystems.claw.open();
 		Subsystems.claw.closeFor(1.0);
-		Subsystems.lift.setLevel(1);
+//		Subsystems.lift.setLevel(1);
 	}
 	public void execute() {}
 	public boolean isFinished() { return true; }
