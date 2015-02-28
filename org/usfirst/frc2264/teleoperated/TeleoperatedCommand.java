@@ -18,15 +18,9 @@ public class TeleoperatedCommand extends Command {
 	}
 
 	protected void initialize() {
-//		Subsystems.lift.calibrate();
-		TeleoperatedCommand tcmd = this;
 		this.cameraThread = new Thread("Camera") {
-			private boolean tickFrame() {
-				Subsystems.camera.tick();
-				return tcmd.isRunning();
-			}
 			public void run() {
-				Util.doEvery(1/15, this::tickFrame);
+				Util.doEvery(1/15, Subsystems.camera::tick);
 			}
 		};
 		this.cameraThread.start();
@@ -37,11 +31,11 @@ public class TeleoperatedCommand extends Command {
 				Subsystems.joystick.getTwist());
 		// Lift
 		if(Subsystems.joystick.getVertical() == VerticalDirection.UP)
-			Subsystems.lift.set(-1.0);
-		else if(Subsystems.joystick.getVertical() == VerticalDirection.DOWN)
 			Subsystems.lift.set(1.0);
+		else if(Subsystems.joystick.getVertical() == VerticalDirection.DOWN)
+			Subsystems.lift.set(-1.0);
 		else
-			Subsystems.lift.set(0.0);
+			Subsystems.lift.stop();
 		// Claw
 		if(Subsystems.joystick.getHorizontal() == HorizontalDirection.LEFT)
 			Subsystems.claw.startClosing();
@@ -51,7 +45,7 @@ public class TeleoperatedCommand extends Command {
 			Subsystems.claw.stop();
 	}
 	protected boolean isFinished() {
-		return Subsystems.joystick.isButtonPressed();
+		return false;
 	}
 	protected void end() {
 		Subsystems.claw.stop();

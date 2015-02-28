@@ -10,9 +10,6 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
-/**
- * @author tikiking1
- */
 public class CameraSubsystem extends Subsystem {
 	USBCamera camera;
 	Image frame;

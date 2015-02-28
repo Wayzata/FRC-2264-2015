@@ -35,10 +35,6 @@ public class JoystickSubsystem extends Subsystem {
 	public double getTwist() { return driveJoystick.getRawAxis(3) * AXIS_SCALING.TWIST; }
 	public int getPOV() { return this.clawAndLiftJoystick.getPOV(0); }
 	
-	public boolean isButtonPressed() { return this.isButtonPressed(4); }
-	public boolean isButtonPressed(int n) { return this.driveJoystick.getRawButton(n); }
-	
-	
 	public VerticalDirection getVertical() {
 		int pov = this.getPOV();
 		if (pov >= 315 || (pov >= 0 && pov <= 45)) {

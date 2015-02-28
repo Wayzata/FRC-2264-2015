@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Util {
 	public static final double POLL_TIME = 0.01;
-	public static void log(String s) {
-		SmartDashboard.putString("Debug Message", Timer.getFPGATimestamp() + " " + s);
+	public static void log(Object o) {
+		SmartDashboard.putString("Debug Message", Timer.getFPGATimestamp() + " " + o.toString());
 	}
 	public static void reportError(Exception ex) {
 		SmartDashboard.putString("Error", Timer.getFPGATimestamp() + " " + ex.toString());

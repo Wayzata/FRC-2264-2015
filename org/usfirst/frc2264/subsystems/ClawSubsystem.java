@@ -2,12 +2,10 @@ package org.usfirst.frc2264.subsystems;
 
 import org.usfirst.frc2264.RobotParts;
 import org.usfirst.frc2264.misc.HorizontalDirection;
-import org.usfirst.frc2264.misc.Util;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ClawSubsystem extends Subsystem {
 	private CANTalon motor;
@@ -26,28 +24,7 @@ public class ClawSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	// High-level
-	public void open() {
-		Util.waitUntilNot(this::startOpening);
-		this.stop();
-	}
-	/* !!WARNING!! THE CLOSE METHOD IS HIGHLY UNSAFE */
-//	public void close() {
-//		Util.waitUntilNot(this::startClosing);
-//		this.stop();
-//	}
-	// Slightly higher-level?
-	public void openFor(double seconds) {
-		Util.doFor(this::startOpening, seconds);
-		this.stop();
-	}
-	public void closeFor(double seconds) {
-		Util.doFor(this::startClosing, seconds);
-		this.stop();
-	}
-	// Low-level
 	public boolean startOpening() {
-		SmartDashboard.putBoolean("X", this.limitSwitch.get());
 		if(this.blockDirection == HorizontalDirection.RIGHT) {
 			this.stop();
 		} else {
@@ -60,7 +37,6 @@ public class ClawSubsystem extends Subsystem {
 		return this.blockDirection == HorizontalDirection.NONE;
 	}
 	public boolean startClosing() {
-		SmartDashboard.putBoolean("X", this.limitSwitch.get());
 		if(this.blockDirection == HorizontalDirection.LEFT) {
 			this.stop();
 		} else {
