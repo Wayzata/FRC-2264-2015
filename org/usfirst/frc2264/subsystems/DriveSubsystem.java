@@ -19,6 +19,10 @@ public class DriveSubsystem extends Subsystem {
 		this.front_right = new CANTalon(frontRight);
 		this.rear_left = new CANTalon(rearLeft);
 		this.rear_right = new CANTalon(rearRight);
+		this.front_left.enableBrakeMode(false);
+		this.front_right.enableBrakeMode(false);
+		this.rear_left.enableBrakeMode(false);
+		this.rear_right.enableBrakeMode(false);
 		this.drive = new RobotDrive(this.front_left, this.rear_left,
 				this.front_right, this.rear_right);
 	}
