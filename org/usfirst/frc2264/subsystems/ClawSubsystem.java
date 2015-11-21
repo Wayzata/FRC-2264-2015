@@ -24,8 +24,8 @@ public class ClawSubsystem extends Subsystem {
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
-	public boolean startOpening() {
-		if(this.blockDirection == HorizontalDirection.RIGHT) {
+	public boolean startOpening(boolean unsafeOverride) {
+		if(this.blockDirection == HorizontalDirection.RIGHT && !unsafeOverride) {
 			this.stop();
 		} else {
 			this.motor.set(this.speed);
@@ -36,8 +36,8 @@ public class ClawSubsystem extends Subsystem {
 		}
 		return this.blockDirection == HorizontalDirection.NONE;
 	}
-	public boolean startClosing() {
-		if(this.blockDirection == HorizontalDirection.LEFT) {
+	public boolean startClosing(boolean unsafeOverride) {
+		if(this.blockDirection == HorizontalDirection.LEFT && !unsafeOverride) {
 			this.stop();
 		} else {
 			this.motor.set(-this.speed);

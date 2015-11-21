@@ -13,7 +13,7 @@ public class GrabBoxCommand extends Command {
 	protected void initialize() {
 	}
 	protected void execute() {
-		Subsystems.claw.startClosing();
+		Subsystems.claw.startClosing(false);
 	}
 	protected boolean isFinished() { return this.isTimedOut(); }
 	protected void end() { Subsystems.claw.stop(); }

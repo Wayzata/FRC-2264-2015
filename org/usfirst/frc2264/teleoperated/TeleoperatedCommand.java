@@ -38,9 +38,9 @@ public class TeleoperatedCommand extends Command {
 			Subsystems.lift.stop();
 		// Claw
 		if(Subsystems.joystick.getHorizontal() == HorizontalDirection.LEFT)
-			Subsystems.claw.startClosing();
+			Subsystems.claw.startClosing(Subsystems.joystick.getUnsafe());
 		else if(Subsystems.joystick.getHorizontal() == HorizontalDirection.RIGHT)
-			Subsystems.claw.startOpening();
+			Subsystems.claw.startOpening(Subsystems.joystick.getUnsafe());
 		else
 			Subsystems.claw.stop();
 	}

@@ -5,10 +5,13 @@ import org.usfirst.frc2264.misc.HorizontalDirection;
 import org.usfirst.frc2264.misc.VerticalDirection;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class JoystickSubsystem extends Subsystem {
 	private Joystick driveJoystick, clawAndLiftJoystick;
+	private JoystickButton joyUnsafe, controllerUnsafe;
 	private static final class AXIS_SCALING {
 		public static final double X = 1.0;
 		public static final double Y = 1.0;
@@ -23,11 +26,15 @@ public class JoystickSubsystem extends Subsystem {
 	public JoystickSubsystem(int driveID, int clawAndLiftID) {
 		this.driveJoystick = new Joystick(driveID);
 		this.clawAndLiftJoystick = new Joystick(clawAndLiftID);
+		this.joyUnsafe = new JoystickButton(this.driveJoystick, RobotParts.BUTTON_JOYSTICK_UNSAFE);
+		this.controllerUnsafe = new JoystickButton(this.clawAndLiftJoystick, RobotParts.BUTTON_CONTROLLER_UNSAFE);
 	}
 	
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(null);
 	}
+	
+	public boolean getUnsafe() { return this.controllerUnsafe.get() && this.joyUnsafe.get(); }
 	
 	public double getX() { return driveJoystick.getRawAxis(0) * AXIS_SCALING.X; }
 	public double getY() { return driveJoystick.getRawAxis(1) * AXIS_SCALING.Y; }
